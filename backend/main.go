@@ -1,6 +1,9 @@
 package main
 
-import "backend/dao"
+import (
+	"backend/dao"
+	"backend/router"
+)
 
 func main() {
 	// 创建数据库 CREATE DATABASE CanteenOrdering;
@@ -9,4 +12,7 @@ func main() {
 		panic(err)
 	}
 	defer dao.DB.Close()
+
+	r := router.SetupRouter()
+	r.Run(":8003")
 }
