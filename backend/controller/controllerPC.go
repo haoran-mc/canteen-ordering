@@ -4,9 +4,13 @@ import (
 	"backend/dao"
 	"backend/model"
 	"github.com/gin-gonic/gin"
+	"log"
 	"net/http"
+	"path"
+	"time"
 )
 
+// PCLogin 管理员登录
 func PCLogin(c *gin.Context) {
 	name := c.PostForm("name")
 	password := c.PostForm("password")
@@ -21,4 +25,193 @@ func PCLogin(c *gin.Context) {
 		})
 		c.Redirect(http.StatusMovedPermanently, "CanteenPC")
 	}
+}
+
+// IndexHandler 食堂订单界面
+func IndexHandler(c *gin.Context) {
+	var foodType string = "食堂"
+	var hangUp bool = false
+	var finish bool = false
+	dao.DB.AutoMigrate(model.Orders{})
+	var orderList []model.Orders
+	dao.DB.Where("type = ? AND finish = ? AND hang_up = ?", foodType, finish, hangUp).Find(&orderList)
+	c.JSON(http.StatusOK, orderList)
+}
+
+// FinishOrder 食堂完成订单
+func FinishOrder(c *gin.Context) {
+	var orderId = c.PostForm("orderId")
+	var Finish bool = true
+	dao.DB.Model(&model.Orders{}).Where("order_id = ?", orderId).Update("finish", Finish)
+}
+
+// HangUp 挂起页面
+func HangUp(c *gin.Context)  {
+	var hangUp bool = true
+	var finish bool = false
+	var orders []model.Orders
+	dao.DB.Where("hang_up = ? AND finish = ?", hangUp, finish).Find(&orders)
+	c.JSON(200,orders)
+}
+
+// HangUpOrder 食堂挂起订单
+func HangUpOrder(c *gin.Context) {
+	var orderId = c.PostForm("orderId")
+	var hangUp bool = true
+	dao.DB.Model(&model.Orders{}).Where("order_id = ?", orderId).Update("hang_up", hangUp)
+}
+
+// HangUpFinish 完成挂起的订单
+func HangUpFinish(c *gin.Context)  {
+	var orderId  = c.PostForm("orderId")
+	var finish bool =true
+	dao.DB.Model(&model.Orders{}).Where("order_num = ?", orderId).Update("finish", finish)
+}
+
+// TakeOut 外卖订单界面
+func TakeOut(c *gin.Context) {
+	var foodType string = "外卖"
+	var hangUp bool = false
+	var finish bool = false
+	var orderList []model.Orders
+	dao.DB.Where("type = ? AND finish = ? AND hang_up = ?", foodType, finish, hangUp).Find(&orderList)
+	c.JSON(http.StatusOK, orderList)
+}
+
+// FinishTakeOut 外卖完成订单
+func FinishTakeOut(c *gin.Context) {
+	var orderId = c.PostForm("orderId")
+	var finish bool = true
+	dao.DB.Model(&model.Orders{}).Where("order_id = ?", orderId).Update("finish", finish)
+}
+
+// OrdersRecord 订单记录
+func OrdersRecord(c *gin.Context){
+	dao.DB.AutoMigrate(model.Orders{})
+	var orders []model.Orders
+	var finish bool = true
+	dao.DB.Where("finish = ?", finish).Find(&orders)
+	c.JSON(http.StatusOK, orders)
+}
+
+// ManageFood 食品管理
+func ManageFood(c *gin.Context) {
+	dao.DB.AutoMigrate(&model.FoodList{})
+	var foodList []model.FoodList
+	dao.DB.Find(&foodList)
+	c.JSON(http.StatusOK, foodList)
+}
+
+// AddFood 添加食品
+func AddFood(c *gin.Context) {
+	dao.DB.AutoMigrate(model.FoodList{})
+	foodName := c.PostForm("name")
+	foodPrice := c.PostForm("price")
+	println(foodName)
+	println(foodPrice)
+	file, err := c.FormFile("file")
+	if err != nil {
+		println(err.Error())
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": err.Error(),
+		})
+		return
+	}
+	log.Println(file.Filename)
+	dst := path.Join("imageAssets/food", file.Filename)
+	_  = c.SaveUploadedFile(file,dst)
+	path1 :="http://127.0.0.1/imageAssets/food/"+file.Filename
+	foodList := model.FoodList{Name:foodName, Price:foodPrice,ImageUrl:path1}
+	dao.DB.Create(&foodList)
+}
+
+// EditFood 编辑食品
+func EditFood(c *gin.Context) {
+	var price = c.PostForm("price")
+	var imageId = c.PostForm("imageId")
+	dao.DB.Model(&model.FoodList{}).Where("image_id = ?", imageId).Update("price", price)
+}
+
+// DeleteFood 删除食品
+func DeleteFood(c *gin.Context) {
+	var id  =c.PostForm("imageId")
+	println(id)
+	dao.DB.Where("image_id = ?", id).Delete(model.FoodList{})
+}
+
+// Opinion 获得所有意见
+func Opinion(c *gin.Context){
+	dao.DB.AutoMigrate(&model.Advise{})
+	var advise  []model.Advise
+	dao.DB.Find(&advise)
+	c.JSON(http.StatusOK, advise)
+}
+
+// DeleteOpinion 删除意见
+func DeleteOpinion(c *gin.Context){
+	var id = c.PostForm("Id")
+	dao.DB.Where("id = ?", id).Delete(model.Advise{})
+}
+
+// SalesAnalysis 销量分析(一周内)
+func SalesAnalysis(c *gin.Context) {
+	var sum [7]int
+	var canteen [7]int
+	var takeOut [7]int
+
+	nowTime := time.Now()                                                // 当前时间
+	aheadTime := nowTime.Format("2006/01/02 15:04:05")             // current 所在的这一天的结束(format)
+	currentTime := nowTime                                               // 每一天的开始
+	oneDay, _ := time.ParseDuration("-24h")
+
+	/*
+	 * ----------------------------------------------------------->
+	 *    ...         |          |          |          |          |
+	 *    ...      三天前       两天前      两天前      一天前       现在
+	 *           behindTime  aheadTime
+	 */
+
+	for i := 0; i < 7; i++ {
+		currentTime = currentTime.Add(oneDay)                            // current
+		behindTime := currentTime.Format("2006/01/02 15:04:05")    // current 所在的这一天的开始(format)
+
+		println(behindTime)
+		println(aheadTime)
+		println("------")
+
+		dao.DB.Model(&model.Orders{}).Where("type = ? AND order_time > ? AND order_time < ? ",
+			"食堂", behindTime, aheadTime).Count(&canteen[i])
+
+		dao.DB.Model(&model.Orders{}).Where("type = ? AND order_time > ? AND order_time < ? ",
+			"外卖", behindTime, aheadTime).Count(&takeOut[i])
+
+		dao.DB.Model(&model.Orders{}).Where("order_time > ? AND order_time < ? ",
+			behindTime, aheadTime).Count(&sum[i])
+
+		aheadTime = behindTime                                           // 前一天的结束
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"canteen": canteen,
+		"takeOut": takeOut,
+		"sum": sum,
+	})
+}
+
+// FoodAnalysis 菜品分析
+func FoodAnalysis(c *gin.Context) {
+	var foodList []model.FoodList
+	dao.DB.Order("month_sell").Find(&foodList )
+	name := make([]string, len(foodList))
+	cnt := make([]int, len(foodList))
+
+	for i := 0; i < len(foodList); i++ {
+		name[i] = foodList[i].Name
+		cnt[i] = foodList[i].MonthSell
+	}
+
+	c.JSON(200, gin.H{
+		"name": name,
+		"cnt": cnt,
+	})
 }

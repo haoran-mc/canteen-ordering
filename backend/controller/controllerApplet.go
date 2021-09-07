@@ -15,8 +15,8 @@ import (
 
 func AppletLogin(c *gin.Context) {
 	code := c.PostForm("code")
-	appID := "wx8ff748b5366527b2"
-	appSecret:= "a23323cec4e5f10a703255c3c674cf15"
+	appID := "appID"
+	appSecret:= "appSecret"
 	code2sessionURL := "https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code"
 	url := fmt.Sprintf(code2sessionURL, appID, appSecret, code)
 
@@ -44,7 +44,7 @@ func AppletLogin(c *gin.Context) {
 	mp["userId"] = Id
 
 	c.JSON(http.StatusOK, mp)
-	user := model.User{
+	user := model.User {
 		WxId: openId,
 		UserId: Id,
 		QrUrl: qrUrl,
