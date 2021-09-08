@@ -17,7 +17,7 @@ func SetupRouter() *gin.Engine {
 	v1 := r.Group("CanteenPC")
 	{
 		v1.POST("/login", controller.PCLogin)                  // 登录页面
-		v1.GET("/", controller.IndexHandler)                   // 主页面
+		v1.GET("/home", controller.IndexHandler)               // 主页面
 
 		v1.PUT("/finishOrder", controller.FinishOrder)         // 完成订单
 
