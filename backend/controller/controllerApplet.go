@@ -40,7 +40,7 @@ func AppletLogin(c *gin.Context) {
 	Id := strconv.Itoa(userId)
 	logic.GetQr(Id)
 
-	qrUrl := "http://127.0.0.1:8003/assets/qr/" + Id + ".png"
+	qrUrl := "http://127.0.0.1:8003/resource/qr/" + Id + ".png"
 	mp := make(map[string]interface{})
 	mp["qrUrl"] = qrUrl
 	mp["userId"] = Id
