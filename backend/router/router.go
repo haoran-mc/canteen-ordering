@@ -2,16 +2,17 @@ package router
 
 import (
 	"backend/controller"
+	"backend/middleware"
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 func SetupRouter() *gin.Engine {
 	r := gin.Default()
-	// 跨域中间件
-	// r.Use()
+	r.Use(middleware.Cors())
 
-	// 静态资源
-	// r.static()
+	//设置外部访问静态资源
+	r.StaticFS("/resource", http.Dir("./resource"))
 
 	v1 := r.Group("CanteenPC")
 	{
