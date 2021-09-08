@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../components/Home.vue'
 import Login from '../components/Login.vue'
+import Welcome from '../components/Welcome.vue'
+import TakeOut from '../components/TakeOut.vue'
 
 Vue.use(VueRouter)
 
@@ -10,7 +12,12 @@ const routes = [
   { path: '/login', component: Login },
   {
     path: '/home',
-    component: Home
+    component: Home,
+    redirect: '/welcome',
+    children: [
+      { path: '/welcome', component: Welcome },
+      { path: '/takeOut', component: TakeOut }
+    ]
   }
 ]
 
@@ -22,14 +29,14 @@ const router = new VueRouter({
 
 // 挂载路由导航守卫
 router.beforeEach((to, from, next) => {
-  // to :: 将要访问的路径
-  // from :: 代表从哪个路径跳转而来
-  // next :: 是一个表示放行的函数
-  if (to.path === '/login') return next()
-  // 获取 token
-  const tokenStr = window.sessionStorage.getItem('token')
-  if (!tokenStr) return next('/login')
-  next()
+// to :: 将要访问的路径
+// from :: 代表从哪个路径跳转而来
+// next :: 是一个表示放行的函数
+if (to.path === '/login') return next()
+// 获取 token
+const tokenStr = window.sessionStorage.getItem('token')
+if (!tokenStr) return next('/login')
+next()
 })
 
 */
