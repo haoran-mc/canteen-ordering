@@ -18,8 +18,12 @@ import {
   Submenu,
   MenuItemGroup,
   Table,
-  TableColumn
+  TableColumn,
+  Popover,
+  Tag
 } from 'element-ui'
+
+Vue.prototype.$message = Message
 
 Vue.use(Button)
 Vue.use(Container)
@@ -39,4 +43,5 @@ Vue.use(Submenu)
 Vue.use(MenuItemGroup)
 Vue.use(Table)
 Vue.use(TableColumn)
-Vue.prototype.$message = Message
+Vue.use(Popover)
+Vue.use(Tag)
