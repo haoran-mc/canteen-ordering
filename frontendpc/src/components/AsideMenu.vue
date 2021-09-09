@@ -9,10 +9,10 @@
       </el-menu-item>
 
       <!-- 挂起订单 -->
-      <el-menu-item index="/hangUp" @click="saveNavState('/hangUp')">
-        <i class="el-icon-refresh-left" ></i>
+      <el-menu-item index="/hangUp" @click="saveNavState('/hangUp'), drawerVisible=true">
+        <i class="el-icon-refresh-left"></i>
         <span slot="title" >
-          <span @click="table = true" type="primary">挂起订单</span>
+          <span type="primary">挂起订单</span>
         </span>
       </el-menu-item>
 
@@ -58,8 +58,60 @@
         <span slot="title">意见处理</span>
       </el-menu-item>
     </el-menu>
+
     <!-- 抽屉 -->
-    <el-drawer></el-drawer>
+    <el-drawer :open="getHangUpOrders" :visible.sync="drawerVisible" size="50%" direction="rtl">
+      <el-table :data="hangUpOrders" style="width: 100%">
+        <!-- 日期 -->
+        <el-table-column label="日期" width="180">
+          <template slot-scope="scope">
+            <span>{{scope.row.time}}</span>
+          </template>
+        </el-table-column>
+        <!-- 订单号 -->
+        <el-table-column label="订单号" width="150">
+          <template slot-scope="scope">
+            <el-popover trigger="hover" placement="top">
+              <div slot="reference" class="name-wrapper">
+                <span size="medium">{{scope.row.orderNum}}</span>
+              </div>
+            </el-popover>
+          </template>
+        </el-table-column>
+        <!-- 菜系 -->
+        <el-table-column label="菜系" width="80">
+          <template slot-scope="scope">
+            <el-popover trigger="hover" placement="top">
+              <div slot="reference" class="name-wrapper">
+                <span size="medium">{{scope.row.foodName}}</span>
+              </div>
+            </el-popover>
+          </template>
+        </el-table-column>
+        <!-- "" -->
+        <el-table-column label="foodName1" width="130">
+          <template slot-scope="scope">
+            <el-popover trigger="hover" placement="top">
+              <div slot="reference" class="name-wrapper">
+                <span size="medium">{{scope.row.foodName1}}</span>
+              </div>
+            </el-popover>
+          </template>
+        </el-table-column>
+        <!-- 类型 -->
+        <el-table-column label="类型">
+          <template slot-scope="scope">
+            <el-button plain type="info">{{scope.row.type}}</el-button>
+          </template>
+        </el-table-column>
+        <!-- 操作 -->
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button type="primary" @click="handle(scope.$index, scope.row)">完成</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-drawer>
   </el-container>
 </template>
 
@@ -67,10 +119,16 @@
   export default {
     data () {
       return {
-        activePath: ''
+        // 激活的路由
+        activePath: '',
+        // 控制抽屉的激活状态
+        drawerVisible: false,
+        // 已挂起的订单
+        hangUpOrders: []
       }
     },
     created () {
+      // 从缓存中获取已保存的链接地址
       this.activePath = window.sessionStorage.getItem('activePath')
     },
     methods: {
@@ -79,6 +137,9 @@
         console.log(activePath)
         window.sessionStorage.setItem('activePath', activePath)
         this.activePath = activePath
+      },
+      getHangUpOrders () {
+        this.$http.get("/hangUp").then(res => { this.hangUpOrders = res.data })
       }
     }
   }

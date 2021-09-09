@@ -1,7 +1,6 @@
 <template>
-  <div>
-    HangUp!
-  </div>
+  <el-container>
+  </el-container>
 </template>
 
 <script>

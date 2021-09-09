@@ -5,13 +5,13 @@ import Login from '../components/Login.vue'
 import Welcome from '../components/Welcome.vue'
 import TakeOut from '../components/TakeOut.vue'
 import ManageOrders from '../components/ManageOrders.vue'
-import HangUp from '../components/HangUp.vue'
 import SalesAnalysis from '../components/SalesAnalysis.vue'
 import FoodAnalysis from '../components/FoodAnalysis.vue'
 import EditFood from '../components/EditFood.vue'
 import AddFood from '../components/AddFood.vue'
 import OrdersRecord from '../components/OrdersRecord.vue'
 import Opinion from '../components/Opinion.vue'
+import HangUp from '../components/HangUp.vue'
 
 Vue.use(VueRouter)
 
@@ -26,13 +26,13 @@ const routes = [
       { path: '/welcome', component: Welcome },
       { path: '/manageOrders', component: ManageOrders },
       { path: '/takeOut', component: TakeOut },
-      { path: '/hangUp', component: HangUp },
       { path: '/salesAnalysis', component: SalesAnalysis },
       { path: '/foodAnalysis', component: FoodAnalysis },
       { path: '/editFood', component: EditFood },
       { path: '/addFood', component: AddFood },
       { path: '/ordersRecord', component: OrdersRecord },
-      { path: '/opinion', component: Opinion }
+      { path: '/opinion', component: Opinion },
+      { path: '/hangUp', component: HangUp }
     ]
   }
 ]
