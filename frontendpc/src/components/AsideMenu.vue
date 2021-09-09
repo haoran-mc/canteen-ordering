@@ -22,29 +22,11 @@
         <span slot="title">外卖处理</span>
       </el-menu-item>
 
-      <!-- 数据统计 -->
-      <el-submenu index="dataAnalysis">
-        <template slot="title">
-          <i class="el-icon-pie-chart"></i>
-          <span>数据统计</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item index="/salesAnalysis" @click="saveNavState('/salesAnalysis')">销量分析</el-menu-item>
-          <el-menu-item index="/foodAnalysis" @click="saveNavState('/foodAnalysis')">菜品分析</el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
-
       <!-- 菜系管理 -->
-      <el-submenu index="manageFood">
-        <template slot="title">
-          <i class="el-icon-dish-1"></i>
-          <span>菜系管理</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item index="/editFood" @click="saveNavState('/editFood')">编辑菜谱</el-menu-item>
-          <el-menu-item index="/addFood" @click="saveNavState('/addFood')">增加菜谱</el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
+      <el-menu-item index="/editFood" @click="saveNavState('/editFood')">
+        <i class="el-icon-dish-1"></i>
+        <span slot="title">菜系管理</span>
+      </el-menu-item>
 
       <!-- 订单记录 -->
       <el-menu-item index="/ordersRecord" @click="saveNavState('/ordersRecord')">
@@ -57,6 +39,18 @@
         <i class="el-icon-edit"></i>
         <span slot="title">意见处理</span>
       </el-menu-item>
+
+      <!-- 数据统计 -->
+      <el-submenu index="dataAnalysis">
+        <template slot="title">
+          <i class="el-icon-pie-chart"></i>
+          <span>数据统计</span>
+        </template>
+        <el-menu-item-group>
+          <el-menu-item index="/salesAnalysis" @click="saveNavState('/salesAnalysis')">销量分析</el-menu-item>
+          <el-menu-item index="/foodAnalysis" @click="saveNavState('/foodAnalysis')">菜品分析</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
     </el-menu>
 
     <!-- 抽屉 -->

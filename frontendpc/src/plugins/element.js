@@ -20,10 +20,14 @@ import {
   Table,
   TableColumn,
   Popover,
-  Tag
+  Tag,
+  Upload,
+  Notification,
+  Dialog
 } from 'element-ui'
 
 Vue.prototype.$message = Message
+Vue.prototype.$notify = Notification
 
 Vue.use(Button)
 Vue.use(Container)
@@ -45,3 +49,5 @@ Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Popover)
 Vue.use(Tag)
+Vue.use(Upload)
+Vue.use(Dialog)
