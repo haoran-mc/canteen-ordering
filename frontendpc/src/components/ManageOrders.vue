@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-card>
     <el-table :data="tableData" style="width: 100%">
       <el-table-column label="图片" width="180">
         <template slot-scope="scope">
@@ -34,7 +34,7 @@
         </template>
       </el-table-column>
     </el-table>
-  </el-container>
+  </el-card>
 </template>
 
 <script>
