@@ -6,7 +6,7 @@
         <el-avatar :src="require('../assets/LoginLogo.png')"></el-avatar>
         <span style="margin-left: 15px;">食堂点餐</span>
       </div>
-      <el-button type="info">退出</el-button>
+      <el-button type="info" @click="logout">退出</el-button>
     </el-header>
     <!-- 页面主体区域 -->
     <el-container>
@@ -37,6 +37,11 @@
     created () {
     },
     methods: {
+      // 退出登录
+      logout () {
+        window.sessionStorage.clear()
+        this.$router.push('/login')
+      }
     }
   }
 </script>
@@ -59,6 +64,7 @@
   .header-title {
     display: flex;
     align-items: center;
+    margin-left: 5px;
   }
 
   .el-aside {

@@ -27,8 +27,8 @@ func PCLogin(c *gin.Context) {
 	}
 }
 
-// IndexHandler 食堂订单界面
-func IndexHandler(c *gin.Context) {
+// ManageOrders 食堂订单界面
+func ManageOrders(c *gin.Context) {
 	var foodType string = "食堂"
 	var hangUp bool = false
 	var finish bool = false
