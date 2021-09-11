@@ -25,11 +25,14 @@ func InitMySQL() (err error) {
 	conf.pwd = "haoran232"
 	conf.host = "127.0.0.1"
 	conf.port = 3306
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		conf.user, conf.pwd, conf.host, conf.port, conf.db)
+	//dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+	//	conf.user, conf.pwd, conf.host, conf.port, conf.db)
 
-	DB, err := gorm.Open("mysql", dsn)
+	dsn := "root:haoran232@(127.0.0.1:3306)/CanteenOrdering?charset=utf8mb4&parseTime=True&loc=Local"
+
+	DB, err = gorm.Open("mysql", dsn)
 	if err != nil {
+		fmt.Println(err.Error())
 		return
 	}
 	return DB.DB().Ping()

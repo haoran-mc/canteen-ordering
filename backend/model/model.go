@@ -38,12 +38,12 @@ type Orders struct {
 	UserCf    string // 用户确认
 }
 
-// FoodList 菜单列表
-type FoodList struct {
+// Food 菜单列表
+type Food struct {
+	ID        int
 	Name      string
 	Price     string
-	ImageUrl  string
-	ImageId   int `gorm:"primary_key"`
+	PhotoPath string
 	MonthSell int
 }
 

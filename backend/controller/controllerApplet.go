@@ -56,7 +56,7 @@ func AppletLogin(c *gin.Context) {
 
 // ShowFood 首页，菜单列表
 func ShowFood(c *gin.Context) {
-	var foodList []model.FoodList
+	var foodList []model.Food
 	dao.DB.Find(&foodList)
 	c.JSON(http.StatusOK, foodList)
 }
@@ -105,10 +105,10 @@ func ShoppingCart(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
 
-	dao.DB.Model(&model.FoodList{}).Where("name = ?", orders.FoodName).
+	dao.DB.Model(&model.Food{}).Where("name = ?", orders.FoodName).
 		UpdateColumn("month_sell", gorm.Expr("month_sell + ?", 1))
 
-	dao.DB.Model(&model.FoodList{}).Where("name = ?", orders.FoodName1).
+	dao.DB.Model(&model.Food{}).Where("name = ?", orders.FoodName1).
 		UpdateColumn("month_sell", gorm.Expr("month_sell + ?", 1))
 }
 

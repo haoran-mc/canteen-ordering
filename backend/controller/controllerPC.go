@@ -3,6 +3,7 @@ package controller
 import (
 	"backend/dao"
 	"backend/model"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
@@ -96,19 +97,18 @@ func OrdersRecord(c *gin.Context){
 
 // ManageFood 食品管理
 func ManageFood(c *gin.Context) {
-	dao.DB.AutoMigrate(&model.FoodList{})
-	var foodList []model.FoodList
+	dao.DB.AutoMigrate(&model.Food{})
+	var foodList []model.Food
 	dao.DB.Find(&foodList)
 	c.JSON(http.StatusOK, foodList)
 }
 
-// AddFood 添加食品
-func AddFood(c *gin.Context) {
-	dao.DB.AutoMigrate(model.FoodList{})
+
+// DAddFood 增加菜
+func DAddFood(c *gin.Context)  {
+	dao.DB.AutoMigrate(model.Food{})
 	foodName := c.PostForm("name")
 	foodPrice := c.PostForm("price")
-	println(foodName)
-	println(foodPrice)
 	file, err := c.FormFile("file")
 	if err != nil {
 		println(err.Error())
@@ -121,7 +121,43 @@ func AddFood(c *gin.Context) {
 	dst := path.Join("imageAssets/food", file.Filename)
 	_  = c.SaveUploadedFile(file,dst)
 	path1 :="http://127.0.0.1/imageAssets/food/"+file.Filename
-	foodList := model.FoodList{Name:foodName, Price:foodPrice,ImageUrl:path1}
+	foodList := model.Food{
+		Name: foodName,
+		Price: foodPrice,
+		PhotoPath: path1,
+	}
+	dao.DB.Create(&foodList)
+}
+
+// AddFood 添加食品
+func AddFood(c *gin.Context) {
+	// TODO dao.DB.AutoMigrate(&model.Food{})
+	id, _ := c.Params.Get("name")
+
+	fmt.Println(id)
+
+	foodName := c.PostForm("name")
+	foodPrice := c.PostForm("price")
+	fmt.Println("1:" + foodName)
+	fmt.Println("2: " + foodPrice)
+	foodName = "糖醋排骨"
+	foodPrice = "20"
+	//foodPhoto, err := c.FormFile("photo_path")
+	//if err != nil {
+	//	println(err.Error())
+	//	c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
+	//	return
+	//}
+	//log.Println(foodPhoto.Filename)
+	//dst := path.Join("../resource/foodPhoto/", foodPhoto.Filename)
+	//_  = c.SaveUploadedFile(foodPhoto, dst)
+	//foodPhotoPath := "http://127.0.0.1:8003/resource/foodPhoto/" + foodPhoto.Filename
+	foodList := model.Food{
+		Name: foodName,
+		Price: foodPrice,
+		//PhotoPath: foodPhotoPath,
+	}
+	fmt.Println(foodList)
 	dao.DB.Create(&foodList)
 }
 
@@ -129,14 +165,14 @@ func AddFood(c *gin.Context) {
 func EditFood(c *gin.Context) {
 	var price = c.PostForm("price")
 	var imageId = c.PostForm("imageId")
-	dao.DB.Model(&model.FoodList{}).Where("image_id = ?", imageId).Update("price", price)
+	dao.DB.Model(&model.Food{}).Where("image_id = ?", imageId).Update("price", price)
 }
 
 // DeleteFood 删除食品
 func DeleteFood(c *gin.Context) {
 	var id  =c.PostForm("imageId")
 	println(id)
-	dao.DB.Where("image_id = ?", id).Delete(model.FoodList{})
+	dao.DB.Where("image_id = ?", id).Delete(model.Food{})
 }
 
 // Opinion 获得所有意见
@@ -200,7 +236,7 @@ func SalesAnalysis(c *gin.Context) {
 
 // FoodAnalysis 菜品分析
 func FoodAnalysis(c *gin.Context) {
-	var foodList []model.FoodList
+	var foodList []model.Food
 	dao.DB.Order("month_sell").Find(&foodList )
 	name := make([]string, len(foodList))
 	cnt := make([]int, len(foodList))

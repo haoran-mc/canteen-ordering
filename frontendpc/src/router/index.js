@@ -17,22 +17,22 @@ Vue.use(VueRouter)
 
 const routes = [
   // { path: '/', redirect: '/login' },
-  { path: '/login', component: Login },
+  { path: '/CanteenPC/login', component: Login },
   {
-    path: '/home',
+    path: '/CanteenPC/home',
     component: Home,
     redirect: '/welcome',
     children: [
-      { path: '/welcome', component: Welcome },
-      { path: '/manageOrders', component: ManageOrders },
-      { path: '/takeOut', component: TakeOut },
-      { path: '/salesAnalysis', component: SalesAnalysis },
-      { path: '/foodAnalysis', component: FoodAnalysis },
-      { path: '/editFood', component: EditFood },
-      { path: '/addFood', component: AddFood },
-      { path: '/ordersRecord', component: OrdersRecord },
-      { path: '/opinion', component: Opinion },
-      { path: '/hangUp', component: HangUp }
+      { path: '/CanteenPC/welcome', component: Welcome },
+      { path: '/CanteenPC/manageOrders', component: ManageOrders },
+      { path: '/CanteenPC/takeOut', component: TakeOut },
+      { path: '/CanteenPC/salesAnalysis', component: SalesAnalysis },
+      { path: '/CanteenPC/foodAnalysis', component: FoodAnalysis },
+      { path: '/CanteenPC/editFood', component: EditFood },
+      { path: '/CanteenPC/addFood', component: AddFood },
+      { path: '/CanteenPC/ordersRecord', component: OrdersRecord },
+      { path: '/CanteenPC/opinion', component: Opinion },
+      { path: '/CanteenPC/hangUp', component: HangUp }
     ]
   }
 ]

@@ -5,8 +5,7 @@
     <el-table :data="tableData" style="width: 100%" border>
       <el-table-column label="图片" width="180">
         <template slot-scope="scope">
-          <i ></i>
-          <el-image style="height: 80px;width: 80px;margin: 0" :src="scope.row.ImageUrl"> </el-image>
+          <el-image :src="scope.row.PhotoPath"></el-image>
         </template>
       </el-table-column>
 
@@ -39,7 +38,7 @@
     </el-table>
 
     <!-- 添加菜品对话框 -->
-    <el-dialog title="添加菜品" :visible.sync="addFoodDialogVisible" width="50%" @close="addFoodDialogClosed">
+    <el-dialog title="添加菜品" :visible.sync="addFoodDialogVisible" width="50%">
       <AddFood></AddFood>
     </el-dialog>
   </el-card>

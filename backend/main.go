@@ -11,7 +11,7 @@ func main() {
 	if err := dao.InitMySQL(); err != nil {
 		panic(err)
 	}
-	defer dao.DB.Close()
+	defer dao.Close()
 
 	r := router.SetupRouter()
 	r.Run(":8003")
