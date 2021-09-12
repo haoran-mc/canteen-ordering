@@ -116,12 +116,14 @@
       // 编辑菜品按钮
       handleEdit (index, row) {
         this.$prompt('请输入价格', { confirmButtonText: '确定', cancelButtonText: '取消' }).then(({ value }) => {
-          const data = new FormData()
-          const a = value
-          const b = row.ID
-          data.append('imageId', b)
-          data.append('price', a)
-          this.$http.put('editFood', data).then(() => { this.getFood() })
+          const formData = new FormData()
+          const foodID = row.ID
+          const foodPrice = value
+
+          formData.append('id', foodID)
+          formData.append('price', foodPrice)
+
+          this.$http.put('editFood', formData).then(() => { this.getFood() })
           this.$message.success('你修改的价格是: ' + value)
         }).catch(() => {
           this.$message.info('取消输入')

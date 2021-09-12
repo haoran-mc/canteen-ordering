@@ -159,9 +159,10 @@ func AddFood(c *gin.Context) {
 
 // EditFood 编辑食品
 func EditFood(c *gin.Context) {
-	var price = c.PostForm("price")
-	var imageId = c.PostForm("imageId")
-	dao.DB.Model(&model.Food{}).Where("image_id = ?", imageId).Update("price", price)
+	var foodID = c.PostForm("id")
+	var foodNewPrice = c.PostForm("price")
+	fmt.Println("+", foodID, "+", foodNewPrice, "+")
+	dao.DB.Model(&model.Food{}).Where("id = ?", foodID).Update("price", foodNewPrice)
 }
 
 // DeleteFood 删除食品
