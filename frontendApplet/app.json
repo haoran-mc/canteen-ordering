@@ -1,5 +1,46 @@
 {
     "pages": [
-        "pages/index/index"
-    ]
+        "pages/index/index",
+        "pages/cart/cart",
+        "pages/me/me",
+        "pages/order/order"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "食堂预约点餐",
+        "navigationBarTextStyle": "black"
+    },
+    "usingComponents": {},
+    "sitemapLocation": "sitemap.json",
+    "tabBar": {
+        "color": "#dbdbdb",
+        "selectedColor": "#1296db",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "菜单",
+                "iconPath": "assest/tabBar/menu.png",
+                "selectedIconPath": "assest/tabBar/selectedMenu.png"
+            },
+            {
+                "pagePath": "pages/cart/cart",
+                "text": "购物车",
+                "iconPath": "assest/tabBar/cart.png",
+                "selectedIconPath": "assest/tabBar/selectedCart.png"
+            },
+            {
+                "pagePath": "pages/order/order",
+                "text": "订单",
+                "iconPath": "assest/tabBar/order.png",
+                "selectedIconPath": "assest/tabBar/selectedOrder.png"
+            },
+            {
+                "pagePath": "pages/me/me",
+                "text": "我的",
+                "iconPath": "assest/tabBar/me.png",
+                "selectedIconPath": "assest/tabBar/selectedMe.png"
+            }
+        ]
+    }
 }
