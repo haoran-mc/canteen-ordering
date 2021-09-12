@@ -1,1 +1,54 @@
-/* pages/index/index.wxss */
+page {
+  background-Color: #F5F5F5;
+}
+
+swiper,swiper image{
+  width: 100vw;
+  height: 400rpx;
+}
+
+.van-cell{
+  margin-top: 1px;
+  height: 80px;
+}
+
+.block{
+  border-radius: 20rpx;
+  margin-top: 10rpx;
+ 
+}
+
+.image{
+margin-top: -18rpx;
+margin-left: -20rpx;
+border-radius: 5rpx;
+}
+
+.content{
+  float:top;
+  display: flex;
+}
+
+.name{
+  font-size: 45rpx;
+  margin-left: 30rpx;
+  margin-top: 5rpx;
+}
+
+.sellSum{
+  font-size: 25rpx;
+  font-weight: 250;
+  color: grey;
+}
+
+.price{
+margin-left: 30rpx;
+margin-top: 15rpx;
+font-size: 40rpx;
+color: red;
+
+}
+.button{
+  float: right;
+  margin-top: 70rpx;
+}
