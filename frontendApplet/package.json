@@ -1,0 +1,14 @@
+{
+  "name": "frontendapplet",
+  "version": "1.0.0",
+  "description": "1. Organize the initial project\r 2. Use Vant\r    - npm init\r    - npm i @vant/weapp -S --production",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vant-weapp": "^0.5.29"
+  }
+}
