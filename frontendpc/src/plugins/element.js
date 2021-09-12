@@ -23,11 +23,13 @@ import {
   Tag,
   Upload,
   Notification,
-  Dialog
+  Dialog,
+  MessageBox
 } from 'element-ui'
 
 Vue.prototype.$message = Message
 Vue.prototype.$notify = Notification
+Vue.prototype.$confirm = MessageBox.confirm
 
 Vue.use(Button)
 Vue.use(Container)
