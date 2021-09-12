@@ -32,7 +32,7 @@ func SetupRouter() *gin.Engine {
 
 		v1.GET("/manageFood", controller.ManageFood)           // 管理菜品页面
 		v1.POST("/addFood", controller.AddFood)                // 添加菜品
-		v1.PUT("/editFood", controller.EditFood)               // TODO 编辑菜品
+		v1.PUT("/editFood", controller.EditFood)               // 编辑菜品
 		v1.DELETE("/deleteFood/:id", controller.DeleteFood)    // 删除菜品
 
 		v1.GET("/opinion", controller.Opinion)                 // TODO 意见页面
