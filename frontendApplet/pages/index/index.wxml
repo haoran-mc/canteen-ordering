@@ -1,13 +1,13 @@
-<view wx:if="{{url != ''}}">
+<view>
   <swiper
     indicator-dots="true"
     autoplay="true "
     current="true"
     indicator-active-color="#fff"
     indicator-color="#eee">
-    <swiper-item><image src="{{scImage[0].url}}"></image></swiper-item>
-    <swiper-item><image src="{{scImage[1].url}}"></image></swiper-item>
-    <swiper-item><image src="{{scImage[2].url}}"></image></swiper-item>
+    <swiper-item><image src="{{swiperItem[0].url}}"></image></swiper-item>
+    <swiper-item><image src="{{swiperItem[1].url}}"></image></swiper-item>
+    <swiper-item><image src="{{swiperItem[2].url}}"></image></swiper-item>
   </swiper>
 
   <view wx:for="{{items}}" wx:key="index" data-index="{{index}}" bindtap="handeltap">
@@ -16,19 +16,22 @@
         <van-button class="button" size="small" type="primary" bindtap="clickBtn">
           <van-toast id="van-toast"/>添加
         </van-button>
-          <view class="content">
-            <van-image image-class="image"
-                       width="5rem"
-                       height="4.8rem"
-                       fit="fit"
-                       src="{{item.ImageUrl}}"/>
-            <view>
-              <view class="name">{{item.Name}}
-                <text class="sellSum">月售{{item.MonthSell}}</text>
-              </view>
-              <view class="price">￥{{item.Price}}</view>
+        <!-- 菜单 -->
+        <view class="content">
+          <!-- 图片 -->
+          <van-image image-class="image"
+                     width="5rem"
+                     height="4.8rem"
+                     fit="fit"
+                     src="{{item.PhotoPath}}"/>
+          <!-- 操作 -->
+          <view>
+            <view class="name">{{item.Name}}
+              <text class="sellSum">月售{{item.MonthSell}}</text>
             </view>
+            <view class="price">￥{{item.Price}}</view>
           </view>
+        </view>
       </view>
     </van-cell>
   </view>

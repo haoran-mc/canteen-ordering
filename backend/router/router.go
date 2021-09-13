@@ -44,15 +44,15 @@ func SetupRouter() *gin.Engine {
 
 	v2 := r.Group("CanteenApplet")
 	{
-		v2.POST("/login", controller.AppletLogin)              // 小程序端登录页面
+		v2.POST("/login", controller.AppletLogin)              // TODO 小程序端登录页面
 		v2.GET("/showFood", controller.ShowFood)               // 小程序首页，菜单列表
-		v2.GET("/shoppingCart", controller.ShoppingCart)       // 购物车页面
-		v2.GET("/myOrder", controller.MyOrder)                 // 我的订单
-		v2.PUT("/receiptMyOrder", controller.ReceiptMyOrder)   // 收货
-		v2.GET("/historyOrders", controller.HistoryOrders)     // 历史订单
-		v2.POST("/addAdvice", controller.AddAdvice)            // 提建议
-		v2.POST("/contact", controller.Contact)                // 联系方式
-		v2.POST("/address", controller.Address)                // 地址
+		v2.GET("/shoppingCart", controller.ShoppingCart)       // TODO 购物车页面
+		v2.GET("/myOrder", controller.MyOrder)                 // TODO 我的订单
+		v2.PUT("/receiptMyOrder", controller.ReceiptMyOrder)   // TODO 收货
+		v2.GET("/historyOrders", controller.HistoryOrders)     // TODO 历史订单
+		v2.POST("/addAdvice", controller.AddAdvice)            // TODO 提建议
+		v2.POST("/contact", controller.Contact)                // TODO 联系方式
+		v2.POST("/address", controller.Address)                // TODO 地址
 	}
 
 	return r

@@ -1,19 +1,86 @@
-// pages/me/me.js
+const app = getApp()
+import Dialog from '@vant/weapp/dialog/dialog';
+
 Page({
-
-    /**
-     * 页面的初始数据
-     */
+    handleGetUserInfo (e) {
+        var url = e.detail.userInfo.avatarUrl
+        wx.setStorage({
+            key: 'url',
+            data: url,
+        })
+        this.setData({
+            url: url
+        })
+    },
     data: {
-
+        url:''
+    },
+    onGetOpenId() {
+        wx.login({
+            success: res => {
+                if (res.code) {
+                    wx.request({
+                        url: app.globalData.URL + "",
+                        method: "POST",
+                        header: {
+                            'content-type': 'application/x-www-form-urlencoded'
+                        },
+                        data: ({
+                            code: res.code
+                        }),
+                        success: res => {
+                            console.log("成功登陆");
+                            // console.log(res.data.userId)
+                            wx.setStorage({
+                                key: "info", data: res.data,
+                                //key: "userId", data: res.data.userId,
+                            })
+                        }
+                    })
+                }
+            }
+        })
+    },
+    getLoginId () {
+        wx.request({
+            url: app.globalData.URL + 'login',
+            data: {},
+            method: 'POST',
+            success: function (res) {
+                // success
+                console.log(res.data)
+            },
+            fail: function () {
+                // fail
+            },
+            complete: function () {
+                // complete
+            }
+        })
+    },
+    tip () {
+        Dialog.alert({
+            title: '声明',
+            message: '食堂预约点餐主要用于线上预定饭菜和线上支付，减少食堂排队时间，和同时提供外卖服务。',
+        }).then(() => {})
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
-
+    onLoad: function (e) {
+        var that = this;
+        wx.getStorage({
+            key: 'url',
+            success: function (res) {
+                console.log(res.data)
+                that.setData({
+                    url: res.data
+                })
+            },
+        })
     },
+
 
     /**
      * 生命周期函数--监听页面初次渲染完成

@@ -1,0 +1,11 @@
+<van-cell title="{{ address}}"  icon="edit" bind:click="showPopup" />
+
+<van-popup  position="bottom" custom-style="height: 17%;" show="{{ show }}" bind:close="onClose">
+  <van-field
+    value="{{address}}"
+    placeholder="请输入地址"
+    border="{{false}}"
+    bind:input="input"
+  />
+  <van-button  plain size="small" type="primary" class="btn" bindtap="clickBtn">确定</van-button>
+</van-popup>

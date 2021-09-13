@@ -1,67 +1,71 @@
 {
-    "pages": [
-        "pages/index/index",
-        "pages/cart/cart",
-        "pages/me/me",
-        "pages/order/order"
-    ],
-    "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "线上食堂点餐",
-        "navigationBarTextStyle": "black"
-    },
-    "usingComponents": {
-        "van-cell": "vant-weapp/cell/index",
-        "van-button": "vant-weapp/button/index",
-        "van-toast": "vant-weapp/toast/index",
-        "van-image": "vant-weapp/image/index",
-
-        "van-submit-bar": "vant-weapp/submit-bar/index",
-        "van-cell-group": "vant-weapp/cell-group/index",
-        "van-card": "vant-weapp/card/index",
-        "van-icon": "vant-weapp/icon/index",
-        "van-panel": "vant-weapp/panel/index",
-        "van-stepper": "vant-weapp/stepper/index",
-        "van-popup": "vant-weapp/popup/index",
-        "van-field": "vant-weapp/field/index",
-        "van-notice-bar": "vant-weapp/notice-bar/index",
-        "van-radio": "vant-weapp/radio/index",
-        "van-radio-group": "vant-weapp/radio-group/index",
-        "van-row": "vant-weapp/row/index",
-        "van-col": "vant-weapp/col/index",
-        "van-notify": "vant-weapp/notify/index",
-        "van-dialog":"vant-weapp/dialog/index"
-    },
-    "sitemapLocation": "sitemap.json",
-    "tabBar": {
-        "color": "#dbdbdb",
-        "selectedColor": "#1296db",
-        "list": [
-            {
-                "pagePath": "pages/index/index",
-                "text": "菜单",
-                "iconPath": "assest/tabBar/menu.png",
-                "selectedIconPath": "assest/tabBar/selectedMenu.png"
-            },
-            {
-                "pagePath": "pages/cart/cart",
-                "text": "购物车",
-                "iconPath": "assest/tabBar/cart.png",
-                "selectedIconPath": "assest/tabBar/selectedCart.png"
-            },
-            {
-                "pagePath": "pages/order/order",
-                "text": "订单",
-                "iconPath": "assest/tabBar/order.png",
-                "selectedIconPath": "assest/tabBar/selectedOrder.png"
-            },
-            {
-                "pagePath": "pages/me/me",
-                "text": "我的",
-                "iconPath": "assest/tabBar/me.png",
-                "selectedIconPath": "assest/tabBar/selectedMe.png"
-            }
-        ]
-    }
+  "pages": [
+    "pages/me/me",
+    "pages/index/index",
+    "pages/cart/cart",
+    "pages/contact/contact",
+    "pages/address/address",
+    "pages/history/history",
+    "pages/twoCode/twoCode",
+    "pages/advise/advise",
+    "pages/myOrder/myOrder"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "线上食堂点餐",
+    "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+    "van-cell": "@vant/weapp/cell/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-submit-bar": "@vant/weapp/submit-bar/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-card": "@vant/weapp/card/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-panel": "@vant/weapp/panel/index",
+    "van-stepper": "@vant/weapp/stepper/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index",
+    "van-notify": "@vant/weapp/notify/index",
+    "van-dialog": "@vant/weapp/dialog/index"
+  },
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#dbdbdb",
+    "selectedColor": "#1296db",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "菜单",
+        "iconPath": "assest/tabBar/menu.png",
+        "selectedIconPath": "assest/tabBar/selectedMenu.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "assest/tabBar/cart.png",
+        "selectedIconPath": "assest/tabBar/selectedCart.png"
+      },
+      {
+        "pagePath": "pages/myOrder/myOrder",
+        "text": "订单",
+        "iconPath": "assest/tabBar/order.png",
+        "selectedIconPath": "assest/tabBar/selectedOrder.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "assest/tabBar/me.png",
+        "selectedIconPath": "assest/tabBar/selectedMe.png"
+      }
+    ]
+  }
 }

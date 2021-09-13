@@ -1,1 +1,40 @@
-/* pages/cart/cart.wxss */
+page {
+    background-Color: #F5F5F5;
+}
+
+.shanchu{
+    float: right;
+    margin-top: -170rpx;
+}
+
+.step{
+    float: right;
+    margin-top: -90rpx;
+}
+
+.car{
+    margin-top: 50%;
+    height: 10rpx;
+}
+
+.img{
+    height: 300rpx;
+    width: 300rpx;
+    margin-left: 30%;
+}
+
+.tip{
+    margin-left: 36%;
+    margin-top: 40rpx;
+    color: grey;
+}
+
+.title-class{
+    margin-left: 20rpx;
+    margin-top: 35rpx;
+}
+
+.price-class{
+    margin-left: 20rpx;
+    margin-bottom: 40rpx;
+}

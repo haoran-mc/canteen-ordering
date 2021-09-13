@@ -1,0 +1,51 @@
+<view  wx:if="{{order !=''}}">
+  <van-panel custom-class="all_info" use-footer-slot>
+    <view class="info">
+      <view class="info_item_top">
+        <text class="left_title">订单信息 </text>
+        <text class="right1"> {{order[0].type}}</text>
+      </view>
+      <view class="info_item1">
+        <text class="left">订单号: </text>
+        <text class="right"> {{order[0].orderNum}}</text>
+      </view>
+      <view class="info_item">
+        <text class="left">取单号:</text>
+        <text class="right"> {{order[0].getNum}}</text>
+      </view>
+      <view class="info_item">
+        <text class="left">时间:</text>
+        <text class="right"> {{order[0].time}}</text>
+      </view>
+      <view class="info_item">
+        <text class="left">菜名1:</text>
+        <text class="right">{{order[0].foodName}}</text>
+      </view>
+      <view class="info_item">
+        <text class="left">菜名2:</text>
+        <text class="right">{{order[0].foodName1}}</text>
+      </view>
+      <view  wx:if="{{order[0].type =='外卖'}}">
+        <view class="info_item">
+          <text class="left"> 地址:</text>
+          <text class="right">{{order[0].address}}</text>
+        </view>
+        <view class="info_item">
+          <text class="left">电话:</text>
+          <text class="right">{{order[0].phone}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="food_info">
+      <text class="moneyId" >￥ {{order[0].allPrice}}</text>
+    </view>
+    <view class="get_food" slot="footer">
+      <van-button bindtap="clickBtn" size="small" type="danger">收货</van-button>
+    </view>
+  </van-panel>
+</view>
+<view wx:if="{{order ==''}}">
+  <view class="tip">暂时无订单</view>
+</view>
+
+

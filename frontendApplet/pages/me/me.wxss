@@ -1,1 +1,17 @@
-/* pages/me/me.wxss */
+page {
+    background-Color: #F5F5F5;
+}
+
+.up{
+    background: white;
+}
+
+.i_image{
+    margin-left: 40%;
+}
+
+.loginBtn{
+    width: 60%;
+    margin-top:60rpx;
+    margin-bottom: 40rpx;
+}

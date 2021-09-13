@@ -1,0 +1,5 @@
+.submit{
+    margin-left: 36%;
+    width: 200rpx;
+    margin-top: 30%;
+}

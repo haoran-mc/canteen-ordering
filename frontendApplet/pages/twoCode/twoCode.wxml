@@ -1,0 +1,5 @@
+<view class="tip">收货时展示</view>
+
+<view class="out">
+  <van-image width="200" height="200" src="{{url}}" />
+</view>

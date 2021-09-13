@@ -1,0 +1,4 @@
+.btn{
+    float: right;
+    margin-right: 20rpx;
+}

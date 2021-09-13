@@ -1,0 +1,12 @@
+<van-cell title="{{phone}}"  icon="edit" bind:click="showPopup" />
+
+<van-popup  position="bottom" custom-style="height: 17%;" show="{{ show }}" bind:close="onClose">
+  <van-field
+    value="{{phone}}"
+    placeholder="请输入电话"
+    border="{{false}}"
+    bind:input="input"
+  />
+  <van-button bindtap="clickBtn" plain size="small" type="primary" style="float: right; margin-right: 20rpx;">
+    确定</van-button>
+</van-popup>

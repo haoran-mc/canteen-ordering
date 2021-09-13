@@ -1,0 +1,26 @@
+<view wx:for="{{orderList}}" wx:key="key">
+  <van-panel
+    custom-class="class"
+    header-class="class"
+    title="{{item.orderId}}"
+    status="{{item.type}}" use-footer-slot>
+
+    <view class="time">
+      <text>下单时间:</text>
+      <text class="right">{{item.time}}</text>
+    </view>
+
+    <view class="content">
+      <text>{{item.foodName}}</text>+<text>{{item.foodName1}}</text>
+      <text class="price">￥{{item.allPrice}}</text>
+    </view>
+
+    <view class="mark">
+      <text>备注:</text>
+      <text class="right">{{item.remark}}</text>
+    </view>
+
+    <view class="get_food" slot="footer">
+    </view>
+  </van-panel>
+</view>

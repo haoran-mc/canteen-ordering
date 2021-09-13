@@ -1,2 +1,73 @@
-<!--pages/me/me.wxml-->
-<text>pages/me/me.wxml</text>
+<view wx:if="{{url != ''}}" class="up" >
+  <van-image
+    class="i_image"
+    round
+    width="5rem"
+    height="5rem"
+    src="{{url}}"
+  />
+</view>
+
+<view wx:if="{{url == ''}}" >
+  <button
+    class="loginBtn"
+    type="primary"
+    plain
+    bindtap='onGetOpenId'
+    open-type="getUserInfo"
+    bindgetuserinfo="handleGetUserInfo">登陆</button>
+</view>
+
+<van-cell
+  is-link
+  icon="/assest/me/phone.svg"
+  title="联系方式"
+  link-type="navigateTo"
+  url="/pages/contact/contact"
+  size="large"
+/>
+
+<van-cell
+  is-link
+  icon="/assest/me/address.svg"
+  title="我的地址"
+  link-type="navigateTo"
+  url="/pages/address/address"
+  size="large"
+/>
+
+<van-cell
+  is-link
+  icon="/assest/me/history.svg"
+  title="历史订单"
+  link-type="navigateTo"
+  url="/pages/history/history"
+  size="large"
+/>
+
+<van-cell
+  is-link
+  icon="/assest/me/twoCode.svg"
+  title="我的二维码"
+  link-type="navigateTo"
+  url="/pages/twoCode/twoCode"
+  size="large"
+/>
+
+<van-cell
+  is-link
+  icon="/assest/me/advise.svg"
+  title="向食堂提出建议"
+  link-type="navigateTo"
+  url="/pages/advise/advise"
+  size="large"
+/>
+
+<van-cell title="声明"
+          is-link
+          icon="/assest/me/state.svg"
+          size="large"
+          bindtap="tip">
+</van-cell>
+<van-dialog id="van-dialog" />
+
