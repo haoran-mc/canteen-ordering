@@ -1,13 +1,9 @@
 const app = getApp()
 Page({
-    /**
-     * 页面的初始数据
-     */
     data: {
         food: '',
         advise: ''
     },
-
     onChange: function (e) {
         var food = e.detail
         this.setData({

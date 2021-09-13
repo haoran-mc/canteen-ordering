@@ -1,1 +1,114 @@
-/* pages/myOrder/myOrder.wxss */
+page {
+  background-Color: #F5F5F5;
+}
+
+.all_info {
+  border-radius: 50rpx;
+}
+
+.class {
+  background: white!important;
+  border-radius: 40rpx;
+  margin-top: 20rpx;
+}
+
+.class1.status {
+color: red;
+}
+
+.get_food {
+  float: right;
+  margin-right: 20rpx;
+  margin-top: 10rpx;
+}
+
+.info {
+  height: auto;
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 1px solid gray;
+  margin-left: 34rpx;
+  font-size: 33rpx;
+}
+
+.info_item {
+  margin-bottom:18rpx;
+  font-size: 38rpx;
+  margin-left: 6rpx;
+}
+
+.info_item_top {
+  margin-bottom:80rpx;
+  font-size: 38rpx;
+  margin-left: 6rpx;
+}
+
+.info_item1 {
+  margin-top:25rpx;
+  margin-bottom: 25rpx;
+  font-size: 38rpx;
+  margin-left: 6rpx;
+}
+
+.food_info {
+  height: 100rpx;
+}
+
+.info_name {
+  float: left;
+  margin-left: 40rpx;
+  margin-top:20rpx;
+}
+
+.money {
+  float: right;
+  margin-right: 40rpx;
+  margin-top: 90rpx;
+  font-size: 40rpx;
+
+}
+
+.moneyId {
+  float: right;
+  margin-right: 40rpx;
+  color: red;
+  margin-top: 30rpx;
+}
+
+.van-panel__footer {
+  padding: 0 0!important;
+}
+
+.tip {
+  color: grey;
+  font-size: 50rpx;
+  margin-left: 33%;
+  margin-top: 50%;
+}
+
+.left_title {
+  color: black;
+  font-size: 40rpx;
+  font-weight: 500;
+}
+
+.left {
+  color: black;
+  font-weight: 345;
+  font-size: 42rpx;
+}
+
+.right {
+  color: #696969;
+  float:right;
+  margin-right: 30rpx;
+  font-weight: 400;
+  font-size: 38rpx;
+}
+
+.right1 {
+  color: #1E90FF;
+  float:right;
+  margin-right: 30rpx;
+}

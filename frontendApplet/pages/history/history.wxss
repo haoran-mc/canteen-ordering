@@ -1,1 +1,52 @@
-/* pages/history/history.wxss */
+page {
+    background-Color: #F5F5F5;
+}
+
+.class{
+    border-radius: 40rpx;
+    background: white!important;
+    margin-top: 10rpx;
+}
+
+.get_food{
+    float: right;
+    margin-right: -120rpx;
+    margin-top: 30rpx;
+}
+
+.content{
+    height: 50rpx;
+    margin-top: 15rpx;
+    margin-left: 34rpx;
+    font-size: 33rpx;
+}
+
+.time{
+    height: 50rpx;
+    margin-top: 20rpx;
+    margin-left: 34rpx;
+    font-size: 33rpx;
+}
+.mark{
+    height: 50rpx;
+    margin-top: 15rpx;
+    padding-bottom: 25rpx;
+    margin-left: 34rpx;
+    font-size: 33rpx;
+}
+
+.right{
+    margin-right: 30rpx;
+    float: right;
+}
+
+.price{
+    margin-right: 30rpx;
+    float: right;
+    color: red;
+}
+
+
+.van-panel__footer{
+    padding: 0 0!important;
+}

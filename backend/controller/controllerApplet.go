@@ -16,6 +16,7 @@ import (
 
 // AppletLogin 小程序端登录
 func AppletLogin(c *gin.Context) {
+	dao.DB.AutoMigrate(model.User{})
 	code := c.PostForm("code")
 	appID := "appID"
 	appSecret := "appSecret"
@@ -63,6 +64,7 @@ func ShowFood(c *gin.Context) {
 
 // ShoppingCart 购物车页面
 func ShoppingCart(c *gin.Context) {
+	dao.DB.AutoMigrate(model.Orders{})
 	var orders model.Orders
 	if err := c.ShouldBind(&orders); err == nil {
 		order := model.Orders{
@@ -93,11 +95,11 @@ func ShoppingCart(c *gin.Context) {
 			"phone":     orders.Phone,
 			"allPrice":  orders.Price,
 			"foodType":  orders.Type,
-			"foodName1":  orders.FoodName1,
+			"foodName1": orders.FoodName1,
 			"foodName2": orders.FoodName2,
-			"foodId1":    orders.FoodId1,
+			"foodId1":   orders.FoodId1,
 			"foodId2":   orders.FoodId2,
-			"url1":       orders.FoodUrl1,
+			"url1":      orders.FoodUrl1,
 			"url2":      orders.FoodUrl2,
 			"remark":    orders.Remark,
 		})
@@ -158,6 +160,7 @@ func HistoryOrders(c *gin.Context) {
 
 // AddAdvice 提建议
 func AddAdvice(c *gin.Context) {
+	dao.DB.AutoMigrate(model.Advise{})
 	foodName := c.PostForm("foodName")
 	advise := c.PostForm("advise")
 	t := time.Now()
@@ -172,14 +175,15 @@ func AddAdvice(c *gin.Context) {
 
 // Contact 联系
 func Contact(c *gin.Context) {
+	dao.DB.AutoMigrate(model.User{})
 	id := c.PostForm("userId")
 	phone := c.PostForm("phone")
-
 	dao.DB.Model(&model.User{}).Where("user_id = ?", id).Update("phone", phone)
 }
 
 // Address 地址
 func Address(c *gin.Context) {
+	dao.DB.AutoMigrate(model.User{})
 	id := c.PostForm("userId")
 	address := c.PostForm("address")
 	dao.DB.Model(&model.User{}).Where("user_id = ?", id).Update("address", address)

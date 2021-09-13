@@ -5,22 +5,24 @@
     title="{{item.orderId}}"
     status="{{item.type}}" use-footer-slot>
 
+    <!-- 时间 -->
     <view class="time">
       <text>下单时间:</text>
       <text class="right">{{item.time}}</text>
     </view>
 
+    <!-- 总价格 -->
     <view class="content">
-      <text>{{item.foodName}}</text>+<text>{{item.foodName1}}</text>
+      <text>{{item.foodName1}}</text>+<text>{{item.foodName2}}</text>
       <text class="price">￥{{item.allPrice}}</text>
     </view>
 
+    <!-- 备注 -->
     <view class="mark">
       <text>备注:</text>
       <text class="right">{{item.remark}}</text>
     </view>
 
-    <view class="get_food" slot="footer">
-    </view>
+    <view class="get_food" slot="footer"></view>
   </van-panel>
 </view>

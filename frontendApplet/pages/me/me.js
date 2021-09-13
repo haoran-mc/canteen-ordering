@@ -2,7 +2,7 @@ const app = getApp()
 import Dialog from '@vant/weapp/dialog/dialog';
 
 Page({
-    handleGetUserInfo (e) {
+    handleGetUserInfo(e) {
         var url = e.detail.userInfo.avatarUrl
         wx.setStorage({
             key: 'url',
@@ -13,14 +13,14 @@ Page({
         })
     },
     data: {
-        url:''
+        url: ''
     },
     onGetOpenId() {
         wx.login({
             success: res => {
                 if (res.code) {
                     wx.request({
-                        url: app.globalData.URL + "",
+                        url: app.globalData.URL + 'login',
                         method: "POST",
                         header: {
                             'content-type': 'application/x-www-form-urlencoded'
@@ -29,11 +29,10 @@ Page({
                             code: res.code
                         }),
                         success: res => {
-                            console.log("成功登陆");
-                            // console.log(res.data.userId)
+                            console.log("成功登陆")
+                            console.log(res.data)
                             wx.setStorage({
-                                key: "info", data: res.data,
-                                //key: "userId", data: res.data.userId,
+                                key: "info",   data: res.data,
                             })
                         }
                     })

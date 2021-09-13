@@ -1,11 +1,8 @@
-// pages/history/history.js
 const app = getApp()
+
 Page({
-    /**
-     * 页面的初始数据
-     */
     data: {
-        userId: "",
+        userId: '7587',
         orderList: []
     },
 
@@ -13,14 +10,14 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        const that = this;
+        const that = this
         wx.getStorage({
             key: 'info',
             success: function (res) {
                 that.setData({
                     userId: res.data.userId
                 })
-            },
+            }
         })
     },
 
@@ -30,18 +27,18 @@ Page({
     onReady: function () {
         const that = this
         wx.request({
-            method: "get",
+            method: "post",
             url: app.globalData.URL + 'historyOrders',
             data: ({
-                userId: this.data.userId,
+                userId: this.data.userId
             }),
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
             },
             success(res) {
                 console.log(res.data)
-                that.setData({ orderList: res.data });
-            },
+                that.setData({ orderList: res.data })
+            }
         })
     },
 

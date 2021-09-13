@@ -26,9 +26,10 @@ Page({
     test:[],
     onSubmit(){
         wx.navigateTo({
-            url: '/pages/cfOrder/cfOrder'
+            url: '/pages/receiptMyOrder/receiptMyOrder'
         })
     },
+    // 显示页面
     onShow: function () {
         const that = this
         wx.request({
@@ -77,9 +78,12 @@ Page({
         const url = items[index].PhotoPath
         var mid = this.data.mid
         const app = getApp()
-        // 判断是否已选购本菜
-        if (app.globalData.selectFoodHash[id]) {
+        if (app.globalData.selectFoodHash[id] == true) {
             Toast.fail('重复选择')
+        }
+        else if(app.globalData.buycar.length > 1) {
+            // 规定一次限定两道菜
+            Toast.fail('购物车已满')
         } else {
             Toast.success('已添加购物车')
             app.globalData.selectFoodHash[id] = true
@@ -87,6 +91,7 @@ Page({
                 "name": name,
                 "price": price,
                 "thumb": url,
+                "ID": id,
                 number: 1
             })
             mid++

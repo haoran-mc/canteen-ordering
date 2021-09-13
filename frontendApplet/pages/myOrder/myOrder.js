@@ -1,9 +1,9 @@
 const app = getApp()
 Page({
     data: {
-        order:[]
+        userId: '7587',
+        order: []
     },
-
     startSetInter: function () {
         var that = this;
         that.data.setInter = setInterval(
@@ -14,11 +14,11 @@ Page({
 
     clickBtn: function () {
         wx.request({
-            method: "put",
+            method: "post",
             url: app.globalData.URL + 'receiptMyOrder',
             data: ({
                 userId: this.data.userId,
-                getNum:this.data.order[0].getNum
+                getId: this.data.order[0].getId
             }),
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
@@ -41,7 +41,7 @@ Page({
                     duration: 700,
                     mask: true
                 })
-            },
+            }
         })
     },
 
@@ -49,14 +49,14 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        var that = this;
+        const that = this;
         wx.getStorage({
             key: 'info',
             success: function (res) {
                 that.setData({
                     userId: res.data.userId
                 })
-            },
+            }
         })
     },
 
@@ -64,9 +64,9 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-        var that = this
+        const that = this
         wx.request({
-            method: "get",
+            method: "post",
             url: app.globalData.URL + 'myOrder',
             data: ({
                 userId: this.data.userId,
@@ -75,9 +75,9 @@ Page({
                 'content-type': 'application/x-www-form-urlencoded'
             },
             success(res) {
-                console.log(res.data)
-                that.setData({order: res.data });
-            },
+                console.log("res.data", res.data)
+                that.setData({ order: res.data })
+            }
         })
     },
 
@@ -85,20 +85,20 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        var that = this
+        const that = this
         wx.request({
-            method: "get",
-            url: app.globalData.URL +'myOrder',
+            method: "post",
+            url: app.globalData.URL + 'myOrder',
             data: ({
-                userId: this.data.userId,
+                userId: this.data.userId
             }),
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
             },
             success(res) {
-                console.log(res.data)
-                that.setData({order: res.data });
-            },
+                console.log("res.data", res.data)
+                that.setData({ order: res.data })
+            }
         })
     },
 

@@ -1,3 +1,4 @@
+const app = getApp()
 import Toast from '@vant/weapp/toast/toast'
 
 Page({
@@ -47,7 +48,10 @@ Page({
     deleteList(e) {
         const index = e.currentTarget.dataset.index
         let items = this.data.items
+        console.log(items)
+        let id = items[index].ID
         items.splice(index, 1)              // 删除购物车列表里这个商品
+        app.globalData.selectFoodHash[id] = false
         this.setData({
             items: items
         })

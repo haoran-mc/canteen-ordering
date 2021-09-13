@@ -3,23 +3,23 @@ var util = require('../../utils/util.js')
 
 Page({
     data: {
-        userId: "",
+        userId: '',
         radio: '1',
-        remark: "",
-        type: "堂食",
+        remark: '',
+        type: '堂食',
 
-        get_num: 0,
-        cf_num: 0,
-        cf_time: "0",
+        getId: 0,
+        receiptId: 0,
+        receiptTime: '',
 
-        cf_name: "",
-        cf_name1: "",
-        url: "",
-        url1: "",
-        name_num: 1,
-        name_num1: 1,
-        food_price: 0,
+        receiptName1: '',
+        receiptName2: '',
+        url1: '',
+        url2: '',
+        foodId1: 1,
+        foodId2: 1,
         food_price1: 0,
+        food_price2: 0,
 
         cf_price: 0,
         run_price: 0,
@@ -27,53 +27,52 @@ Page({
 
         order: [],
 
-        phone: "没填电话哦!",
-        address: "没填地址哦!"
+        phone: '未填电话!',
+        address: '未填地址!'
     },
     onChange(event) {
         this.setData({
             radio: event.detail
         })
         if (event.detail == 1){
-            this.setData({ type: "堂食", });
-            this.setData({ run_price: 0, });
+            this.setData({ type: "堂食", })
+            this.setData({ run_price: 0, })
         } else {
-            this.setData({ type: "外卖", });
-            this.setData({ run_price: 1, });
+            this.setData({ type: "外卖", })
+            this.setData({ run_price: 1, })
         }
     },
 
     remark1() {
-        this.setData({ remark: "多加饭",});
+        this.setData({ remark: "加饭",});
     },
 
     remark2() {
-        this.setData({ remark: "多加汁", });
+        this.setData({ remark: "加汤", });
     },
 
     onSubmit() {
         wx.request({
             method: 'post',
-            url: app.globalData.URL + 'Applets/handleOrder',
+            url: app.globalData.URL + 'shoppingCart',
             data: ({
-                getNum:this.data.get_num,
-                orderNum:this.data.cf_num,
-                userId:this.data.userId,
-                time:this.data.cf_time,
-                foodName1: this.data.cf_name,
-                foodName2: this.data.cf_name1,
-                url:this.data.url,
-                url1:this.data.url1,
-                foodID1:this.data.name_num,
-                foodID2: this.data.name_num1,
-                price: this.data.food_price,
-                price1: this.data.food_price1,
-                allPrice:this.data.all_Price,
-                // advise: this.data.advise,
-                type:this.data.type,
-                remark:this.data.remark,
-                address:this.data.address,
-                phone:this.data.phone
+                userId:    this.data.userId,
+                getId:     this.data.getId,
+                orderId:   this.data.receiptId,
+                time:      this.data.receiptTime,
+                foodName1: this.data.receiptName1,
+                foodName2: this.data.receiptName2,
+                url1:      this.data.url1,
+                url2:      this.data.url2,
+                foodId1:   this.data.foodId1,
+                foodId2:   this.data.foodId2,
+                price1:    this.data.food_price1,
+                price2:    this.data.food_price2,
+                allPrice:  this.data.all_Price,
+                type:      this.data.type,
+                remark:    this.data.remark,
+                address:   this.data.address,
+                phone:     this.data.phone
             }),
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
@@ -85,8 +84,10 @@ Page({
                     mask: true
                 })
                 var app = getApp()
+                // 清空购物车
                 app.globalData.buycar = []
-                // app.globalData.buycar.splice(0, 2)
+                app.globalData.buycar.splice(0, 2)
+                app.globalData.selectFoodHash = []
                 setTimeout(() => {
                     wx.switchTab({ url: '/pages/myOrder/myOrder', })
                 }, 1000);
@@ -108,7 +109,7 @@ Page({
     onLoad: function (options) {
         var i = (Math.random() * 9999).toFixed(0)
         this.setData({
-            get_num: i
+            getId: i
         })
         var str = '',
             range = 10,
@@ -122,7 +123,7 @@ Page({
             str += arr[pos]
         }
         this.setData({
-            cf_num: str
+            receiptId: str
         })
 
         const that = this
@@ -134,8 +135,9 @@ Page({
                 })
             },
             fail: function () {
-            },
+            }
         })
+
         wx.getStorage({
             key: 'address',
             success: function (res) {
@@ -144,7 +146,7 @@ Page({
                 })
             },
             fail: function () {
-            },
+            }
         })
 
         wx.getStorage({
@@ -155,7 +157,7 @@ Page({
                 })
             },
             fail: function () {
-            },
+            }
         })
     },
 
@@ -172,7 +174,7 @@ Page({
     onShow: function () {
         var TIME = util.formatTime(new Date())
         this.setData({
-            cf_time: TIME
+            receiptTime: TIME
         })
 
         var app = getApp()
@@ -189,29 +191,28 @@ Page({
             all_Price: total
         })
 
-        let foodName1, foodID1, foodName2, foodID2, url, url1
+        let foodName1, foodID1, foodName2, foodID2, url1, url2
         if (order.length == 1) {
             foodName1 = order[0].name
             foodID1 = order[0].number
-            url = order[0].thumb
+            url1 = order[0].thumb
         }
         if (order.length == 2) {
-            foodName1=order[0].name
-            foodID1=order[0].number
-            url=order[0].thumb
-            foodName2=order[1].name
-            foodID2=order[1].number
-            url1=order[1].thumb
+            foodName1 = order[0].name
+            foodID1 = order[0].number
+            url1 = order[0].thumb
+            foodName2 = order[1].name
+            foodID2 = order[1].number
+            url2 = order[1].thumb
         }
         this.setData({
-            cf_name:foodName1,
-            cf_name1:foodName2,
-            name_num:foodID1,
-            name_num1:foodID2,
-            url:url,
-            url1:url1
+            receiptName1: foodName1,
+            receiptName2: foodName2,
+            foodId1: foodID1,
+            foodId2: foodID2,
+            url1: url1,
+            url2: url2
         })
-        console.log(this.data.order)
     },
 
     /**
