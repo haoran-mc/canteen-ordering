@@ -1,54 +1,54 @@
 page {
-  background-Color: #F5F5F5;
+    background-Color: #F5F5F5;
 }
 
-swiper,swiper image{
-  width: 100vw;
-  height: 400rpx;
+.sellSum {
+    font-size: 25rpx;
+    font-weight: 250;
+    color: grey;
+    margin-left: 30rpx;
 }
 
-.van-cell{
-  margin-top: 1px;
-  height: 80px;
+.button {
+    float: right;
+    margin-top: 70rpx;
 }
 
-.block{
-  border-radius: 20rpx;
-  margin-top: 10rpx;
- 
+swiper, swiper image {
+    width: 100vw;
+    height: 400rpx;
 }
 
-.image{
-margin-top: -18rpx;
-margin-left: -20rpx;
-border-radius: 5rpx;
+.van-cell {
+    margin-top: 1px;
+    height: 80px;
 }
 
-.content{
-  float:top;
-  display: flex;
+.block {
+    border-radius: 20rpx;
+    margin-top: 10rpx;
 }
 
-.name{
-  font-size: 45rpx;
-  margin-left: 30rpx;
-  margin-top: 5rpx;
+.image {
+    margin-top: -18rpx;
+    margin-left: -20rpx;
+    border-radius: 5rpx;
 }
 
-.sellSum{
-  font-size: 25rpx;
-  font-weight: 250;
-  color: grey;
+.content {
+    float:top;
+    display: flex;
 }
 
-.price{
-margin-left: 30rpx;
-margin-top: 15rpx;
-font-size: 40rpx;
-color: red;
-
+.name {
+    font-size: 45rpx;
+    margin-left: 30rpx;
+    margin-top: 5rpx;
 }
-.button{
-  float: right;
-  margin-top: 70rpx;
+
+.price {
+    margin-left: 30rpx;
+    margin-top: 15rpx;
+    font-size: 40rpx;
+    color: red;
 }

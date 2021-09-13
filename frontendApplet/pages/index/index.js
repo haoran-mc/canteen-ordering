@@ -1,22 +1,16 @@
 const app = getApp()
-import Toast from '@vant/weapp/toast/toast';
-import Notify from '@vant/weapp/notify/notify';
+import Toast from '@vant/weapp/toast/toast'
+import Notify from '@vant/weapp/notify/notify'
 
 Page({
     data: {
         url: '',
         swiperItem: [
-            {
-                url: "../../assest/swiper/swiper-item-1.png"
-            },
-            {
-                url: "../../assest/swiper/swiper-item-2.jpeg"
-            },
-            {
-                url: "../../assest/swiper/swiper-item-3.jpeg"
-            }
+            { url: "../../assest/swiper/swiper-item-1.png" },
+            { url: "../../assest/swiper/swiper-item-2.jpeg" },
+            { url: "../../assest/swiper/swiper-item-3.jpeg" }
         ],
-        // 后端数据
+        // 默认一道菜，需要从后端接收
         items: [
             {
                 Name: "糖醋排骨",
@@ -26,11 +20,8 @@ Page({
             }
         ],
         mid: 0,
-        tatol_price: 0,
-        motto: 'Hello World',
-        userInfo: {},
-        hasUserInfo: false,
-        canIUse: wx.canIUse('button.open-type.getUserInfo'),
+        tatol_price: 0
+        // userInfo: {}
     },
     test:[],
     onSubmit(){
@@ -46,7 +37,6 @@ Page({
             method: 'GET',
             success: function (res) {
                 // success
-                // console.log(res.data)
                 that.setData({ items: res.data });
             },
             fail: function () {
@@ -59,7 +49,6 @@ Page({
         wx.getStorage({
             key: 'url',
             success: function (res) {
-                console.log(res.data)
                 that.setData({
                     url: res.data
                 })
@@ -69,33 +58,36 @@ Page({
             }
         })
     },
-    a:function () {
+    a: function () {
         wx.getUserInfo({
             success:function (res) {
-                console.log(res.userInfo.avatarUrl)
+                // console.log(res.userInfo.avatarUrl)
             }
         })
     },
     clickBtn: function (e) {
     },
+    // 从后端接收数据
     handeltap: function (e) {
         const items = this.data.items
         const index = e.currentTarget.dataset.index
+        const id = items[index].ID
         const name = items[index].Name
         const price = items[index].Price
         const url = items[index].PhotoPath
         var mid = this.data.mid
-        var app = getApp()
-        if (app.globalData.buycar.length > 1) {
-            Toast.fail('购物车已满')
-            console.log("-----" + items)
+        const app = getApp()
+        // 判断是否已选购本菜
+        if (app.globalData.selectFoodHash[id]) {
+            Toast.fail('重复选择')
         } else {
-            Toast.success('已添加购物车哦！')
+            Toast.success('已添加购物车')
+            app.globalData.selectFoodHash[id] = true
             app.globalData.buycar.push({
                 "name": name,
                 "price": price,
                 "thumb": url,
-                number:1
+                number: 1
             })
             mid++
         }
@@ -106,57 +98,5 @@ Page({
             mid: mid,
             tatol_price: tatol_price
         })
-    },
-    onHide: function () {
-        this.setData({
-            tatol_price:0
-        })
-    },
-
-    // gotoPage1: function () {
-    //   wx.navigateTo({ url: '/pages/me/me', })
-    // },
-    //事件处理函数
-    //   bindViewTap: function() {
-    //     wx.navigateTo({
-    //       url: '../logs/logs'
-    //     })
-    //   },
-    //   onLoad: function () {
-    //     if (app.globalData.userInfo) {
-    //       this.setData({
-    //         userInfo: app.globalData.userInfo,
-    //         hasUserInfo: true
-    //       })
-    //     } else if (this.data.canIUse){
-    //       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-    //       // 所以此处加入 callback 以防止这种情况
-    //       app.userInfoReadyCallback = res => {
-    //         this.setData({
-    //           userInfo: res.userInfo,
-    //           hasUserInfo: true
-    //         })
-    //       }
-    //       console.log(app.globalData.userInfo)
-    //     } else {
-    //       // 在没有 open-type=getUserInfo 版本的兼容处理
-    //       wx.getUserInfo({
-    //         success: res => {
-    //           app.globalData.userInfo = res.userInfo
-    //           this.setData({
-    //             userInfo: res.userInfo,
-    //             hasUserInfo: true
-    //           })
-    //         }
-    //       })
-    //     }
-    //   },
-    //   getUserInfo: function(e) {
-    //     console.log(e)
-    //     app.globalData.userInfo = e.detail.userInfo
-    //     this.setData({
-    //       userInfo: e.detail.userInfo,
-    //       hasUserInfo: true
-    //     })
-    //   }
+    }
 })

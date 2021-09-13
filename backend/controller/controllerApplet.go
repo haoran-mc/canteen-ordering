@@ -74,12 +74,12 @@ func ShoppingCart(c *gin.Context) {
 			Phone:     orders.Phone,
 			Price:     orders.Price,
 			Type:      orders.Type,
-			FoodName:  orders.FoodName,
 			FoodName1: orders.FoodName1,
-			FoodId:    orders.FoodId,
+			FoodName2: orders.FoodName2,
 			FoodId1:   orders.FoodId1,
-			FoodUrl:   orders.FoodUrl,
+			FoodId2:   orders.FoodId2,
 			FoodUrl1:  orders.FoodUrl1,
+			FoodUrl2:  orders.FoodUrl2,
 			Remark:    orders.Remark,
 		}
 		dao.DB.Create(&order)
@@ -93,22 +93,22 @@ func ShoppingCart(c *gin.Context) {
 			"phone":     orders.Phone,
 			"allPrice":  orders.Price,
 			"foodType":  orders.Type,
-			"foodName":  orders.FoodName,
-			"foodName1": orders.FoodName1,
-			"foodId":    orders.FoodId,
-			"foodId1":   orders.FoodId1,
-			"url":       orders.FoodUrl,
-			"url1":      orders.FoodUrl1,
+			"foodName1":  orders.FoodName1,
+			"foodName2": orders.FoodName2,
+			"foodId1":    orders.FoodId1,
+			"foodId2":   orders.FoodId2,
+			"url1":       orders.FoodUrl1,
+			"url2":      orders.FoodUrl2,
 			"remark":    orders.Remark,
 		})
 	} else {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
 
-	dao.DB.Model(&model.Food{}).Where("name = ?", orders.FoodName).
+	dao.DB.Model(&model.Food{}).Where("name = ?", orders.FoodName1).
 		UpdateColumn("month_sell", gorm.Expr("month_sell + ?", 1))
 
-	dao.DB.Model(&model.Food{}).Where("name = ?", orders.FoodName1).
+	dao.DB.Model(&model.Food{}).Where("name = ?", orders.FoodName2).
 		UpdateColumn("month_sell", gorm.Expr("month_sell + ?", 1))
 }
 
@@ -148,7 +148,7 @@ func HistoryOrders(c *gin.Context) {
 	println(userId)
 	var query []model.Orders
 	dao.DB.Where("user_id = ?", userId).Find(&query)
-	c.JSON(200, query)
+	c.JSON(http.StatusOK, query)
 	jsons, errs := json.Marshal(query)
 	if errs != nil {
 		fmt.Println(errs.Error())

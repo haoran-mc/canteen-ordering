@@ -26,12 +26,12 @@ type Orders struct {
 	Phone     string `form:"phone" json:"phone"`
 	Price     int    ` gorm:"not null" form:"allPrice" json:"allPrice" binding:"required"`
 	Type      string `form:"type" json:"type" binding:"required"`
-	FoodName  string `form:"foodName" json:"foodName" binding:"required"`
-	FoodName1 string `form:"foodName1" json:"foodName1" `
-	FoodId    string `form:"foodId" json:"foodId" binding:"required"`
-	FoodId1   string `form:"foodId1" json:"foodId1" `
-	FoodUrl   string `form:"url" json:"url" `
+	FoodName1 string `form:"foodName1" json:"foodName1" binding:"required"`
+	FoodName2 string `form:"foodName2" json:"foodName2" `
+	FoodId1   string `form:"foodId1" json:"foodId1" binding:"required"`
+	FoodId2   string `form:"foodId2" json:"foodId2" `
 	FoodUrl1  string `form:"url1" json:"url1" `
+	FoodUrl2  string `form:"url2" json:"url2" `
 	Remark    string `form:"remark" json:"remark" `
 	HangUp    bool   // 挂起
 	Finish    bool   // 完成标记

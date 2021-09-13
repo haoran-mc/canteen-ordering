@@ -10,11 +10,12 @@
     <swiper-item><image src="{{swiperItem[2].url}}"></image></swiper-item>
   </swiper>
 
+  <!-- 菜单区域 -->
   <view wx:for="{{items}}" wx:key="index" data-index="{{index}}" bindtap="handeltap">
-    <van-cell custom-class="block" >
+    <van-cell custom-class="block">
       <view slot="title">
         <van-button class="button" size="small" type="primary" bindtap="clickBtn">
-          <van-toast id="van-toast"/>添加
+          <van-toast id="van-toast"/>选购
         </van-button>
         <!-- 菜单 -->
         <view class="content">
@@ -24,12 +25,9 @@
                      height="4.8rem"
                      fit="fit"
                      src="{{item.PhotoPath}}"/>
-          <!-- 操作 -->
           <view>
-            <view class="name">{{item.Name}}
-              <text class="sellSum">月售{{item.MonthSell}}</text>
-            </view>
-            <view class="price">￥{{item.Price}}</view>
+            <view class="name">{{item.Name}}</view>
+            <view class="price">￥{{item.Price}}<text class="sellSum">月售{{item.MonthSell}}</text></view>
           </view>
         </view>
       </view>

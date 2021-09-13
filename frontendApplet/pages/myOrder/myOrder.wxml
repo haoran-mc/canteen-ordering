@@ -19,11 +19,11 @@
       </view>
       <view class="info_item">
         <text class="left">菜名1:</text>
-        <text class="right">{{order[0].foodName}}</text>
+        <text class="right">{{order[0].foodName1}}</text>
       </view>
       <view class="info_item">
         <text class="left">菜名2:</text>
-        <text class="right">{{order[0].foodName1}}</text>
+        <text class="right">{{order[0].foodName2}}</text>
       </view>
       <view  wx:if="{{order[0].type =='外卖'}}">
         <view class="info_item">

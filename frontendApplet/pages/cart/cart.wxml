@@ -8,7 +8,7 @@
     thumb="{{item.thumb}}">
     <view slot="footer">
       <van-button
-        class="shanchu"
+        class="delete-order"
         type="danger"
         size="mini"
         bindtap="deleteList"
@@ -16,7 +16,7 @@
       <van-stepper
         class="step"
         data-index="{{index}}"
-        value="{{ item.number }}"
+        value="{{item.number}}"
         bind:change="onChange"
         bind:plus="plus"
         bind:minus="minus"/>
@@ -24,7 +24,8 @@
   </van-card>
 </view>
 
-<view wx:if="{{totalPrice !=''}}">
+<!-- 页脚 -->
+<view wx:if="{{totalPrice != ''}}">
   <van-submit-bar
     price="{{totalPrice*100}}"
     button-text="去结算"
@@ -32,7 +33,7 @@
   />
 </view>
 
-<view wx:if="{{totalPrice ==''}}"  class="car">
+<view wx:if="{{totalPrice == ''}}"  class="car">
   <image src="/assest/cart/cartNull.svg" class="img"></image>
-  <view class="tip">购物车为空哦</view>
+  <view class="tip">购物车为空</view>
 </view>

@@ -2,39 +2,39 @@ page {
     background-Color: #F5F5F5;
 }
 
-.shanchu{
+.delete-order {
     float: right;
     margin-top: -170rpx;
 }
 
-.step{
+.step {
     float: right;
     margin-top: -90rpx;
 }
 
-.car{
+.car {
     margin-top: 50%;
     height: 10rpx;
 }
 
-.img{
+.img {
     height: 300rpx;
     width: 300rpx;
     margin-left: 30%;
 }
 
-.tip{
+.tip {
     margin-left: 36%;
     margin-top: 40rpx;
     color: grey;
 }
 
-.title-class{
+.title-class {
     margin-left: 20rpx;
     margin-top: 35rpx;
 }
 
-.price-class{
+.price-class {
     margin-left: 20rpx;
     margin-bottom: 40rpx;
 }

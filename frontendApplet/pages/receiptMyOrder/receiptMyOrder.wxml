@@ -1,0 +1,66 @@
+<view class="panel">
+  <view class="panel_item">
+    取餐号：
+    <text class="panel_item_content">{{get_num}}</text>
+  </view>
+  <view class="panel_item">
+    订单号：
+    <text class="panel_item_content">{{cf_num}}</text>
+  </view>
+  <view class="panel_item">
+    订单时间：
+    <text class="panel_item_content">{{cf_time}}{{}}</text>
+  </view>
+  <view class="panel_item" wx:for="{{order}}" wx:key="index" >
+    菜名{{index+1}}：
+    <text class="panel_item_content">{{item.name}} x {{item.number}}</text>
+  </view>
+  <view class="panel_item">
+    金额:
+    <text class="panel_item_content_price">￥{{all_Price}}</text>
+  </view>
+</view>
+
+<view  wx:if="{{type == '外卖'}}">
+  <view class="panel1">
+    <view class="panel_item">
+      联系方式：
+      <text class="panel_item_content">{{phone}}</text>
+    </view>
+    <view class="panel_item">
+      地址：
+      <text class="panel_item_content">{{address}}</text>
+    </view>
+    <view class="panel_item">
+      配送费:
+      <text class="panel_item_content_price">￥1</text>
+    </view>
+  </view> 
+</view>
+
+<view class="panel2">
+  <input  placeholder="备注" value="{{remark}}">
+    </input>
+    <view class="remark">
+      <van-button plain type="info" bindtap="remark1" size="mini">多加饭</van-button>
+      <van-button plain type="info" bindtap="remark2" size="mini">多加汁</van-button>
+    </view>
+</view>
+
+<van-radio-group class="aa" value="{{ radio }}" bind:change="onChange" >
+  <van-row >
+    <van-col offset="13" span="5">
+      <van-radio name="1">堂食</van-radio>
+    </van-col>
+    <van-col span="5">
+      <van-radio name="2">外卖</van-radio>
+    </van-col>
+  </van-row>
+</van-radio-group>
+
+<van-submit-bar 
+  round
+  price="{{ run_price*100+all_Price*100}}"
+  button-text="提交订单"
+  bind:submit="onSubmit"
+/>

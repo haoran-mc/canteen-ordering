@@ -30,7 +30,7 @@ func PCLogin(c *gin.Context) {
 
 // ManageOrders 食堂订单界面
 func ManageOrders(c *gin.Context) {
-	var foodType string = "食堂"
+	var foodType string = "堂食"
 	var hangUp bool = false
 	var finish bool = false
 	dao.DB.AutoMigrate(model.Orders{})
@@ -101,31 +101,6 @@ func ManageFood(c *gin.Context) {
 	var foodList []model.Food
 	dao.DB.Find(&foodList)
 	c.JSON(http.StatusOK, foodList)
-}
-
-// DAddFood 增加菜
-func DAddFood(c *gin.Context) {
-	dao.DB.AutoMigrate(model.Food{})
-	foodName := c.PostForm("name")
-	foodPrice := c.PostForm("price")
-	file, err := c.FormFile("file")
-	if err != nil {
-		println(err.Error())
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"message": err.Error(),
-		})
-		return
-	}
-	log.Println(file.Filename)
-	dst := path.Join("imageAssets/food", file.Filename)
-	_ = c.SaveUploadedFile(file, dst)
-	path1 := "http://127.0.0.1/imageAssets/food/" + file.Filename
-	foodList := model.Food{
-		Name:      foodName,
-		Price:     foodPrice,
-		PhotoPath: path1,
-	}
-	dao.DB.Create(&foodList)
 }
 
 // AddFood 添加食品
