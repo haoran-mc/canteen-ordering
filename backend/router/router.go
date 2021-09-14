@@ -20,12 +20,11 @@ func SetupRouter() *gin.Engine {
 		v1.GET("/manageOrders", controller.ManageOrders)         // 订单管理
 		v1.PUT("/finishOrder/:orderId", controller.FinishOrder)  // 完成订单
 
-		v1.GET("/hangUp", controller.HangUp)                     // TODO 挂起页面
-		v1.PUT("/hangUpOrder/:orderId/:state", controller.HangUpOrder)  // TODO 订单挂起
-		v1.PUT("/hangUpFinish", controller.HangUpFinish)         // TODO 完成挂起订单
+		v1.GET("/hangUp", controller.HangUp)                     // 挂起页面
+		v1.PUT("/hangUpOrder/:orderId/:state", controller.HangUpOrder)  // 订单挂起
 
-		v1.GET("/takeOut", controller.TakeOut)                   // TODO 外卖页面
-		v1.PUT("/takeOutOp", controller.FinishTakeOut)           // TODO 完成外卖
+		v1.GET("/takeOut", controller.TakeOut)                   // 外卖页面
+		v1.PUT("/finishTakeOut/:orderId", controller.FinishTakeOut)     // TODO 完成外卖
 
 		v1.GET("/ordersRecord", controller.OrdersRecord)         // TODO 订单记录
 

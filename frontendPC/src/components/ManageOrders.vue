@@ -8,7 +8,7 @@
 <template>
   <el-card style="width: 100%;">
     <el-table :data="tableData" style="width: 100%">
-      <el-table-column label="图片">
+      <el-table-column label="图片" align="center">
         <template slot-scope="scope">
           <el-image style="height: 80px; width: 80px; margin: 0;" :src="scope.row.url1"></el-image>
           <el-image
@@ -18,7 +18,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="菜名">
+      <el-table-column label="菜名" align="center">
         <template slot-scope="scope">
           <div slot="reference">
             <span>{{scope.row.foodName1}}</span>
@@ -29,7 +29,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="价格">
+      <el-table-column label="价格" align="center">
         <template slot-scope="scope">
           <div slot="reference" >
             <el-tag type="danger" size="medium">{{scope.row.allPrice}}</el-tag>
@@ -37,7 +37,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="操作">
+      <el-table-column label="操作" align="center">
         <template slot-scope="scope">
           <!-- 完成按钮 -->
           <el-button

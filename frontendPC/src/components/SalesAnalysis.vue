@@ -3,12 +3,12 @@
 </template>
 
 <script>
-  import echarts from 'echarts'
+  const echarts = require('echarts')
 
   export default {
     data () {
       return {
-        list: []
+        list: {}
       }
     },
     created () {
@@ -18,19 +18,26 @@
       this.drawLine()
     },
     methods: {
+      // 获取数据
       getSalesAnalysis () {
         this.$http.get("/salesAnalysis").then(res => {
+          /* console.log(res) */
           this.list = res.data
         })
+        console.log(this.list)
       },
+      // 画折线图
       drawLine () {
+        // 获取dom元素
         this.char = echarts.init(document.getElementById('main'))
         this.char.setOption({
           title: {
             text: '销量折线图',
             // 主标题内容样式
-            textStyle: { color: '#3398DB' },
-            // 标题位置,因为图形是是放在一个dom中,因此用padding属性来定位
+            textStyle: {
+              color: '#3398DB'
+            },
+            // 标题位置,图形是放在一个dom中,因此用padding属性来定位
             padding: [0, 0, 100, 100]
           },
           tooltip: {
@@ -41,7 +48,7 @@
             }
           },
           legend: {
-            data: ['金额', '总销量', '堂食', '外卖']
+            data: ['总销量', '堂食', '外卖']
           },
           toolbox: {
             feature: {
@@ -54,6 +61,7 @@
             bottom: '3%',
             containLabel: true
           },
+          // 横坐标
           xAxis: [
             {
               type: 'category',
@@ -61,6 +69,7 @@
               data: ['最近第七天', '最近第六天', '最近第五天', '最近第四天', '最近第三天', '最近第二天', '最近第一天']
             }
           ],
+          // 纵坐标
           yAxis: [
             {
               type: 'value'
@@ -87,11 +96,11 @@
               type: 'line',
               stack: '总量',
               areaStyle: {},
-              data: this.list
+              data: this.list.sum
             }
           ]
         })
-        this.$http.get('http://localhost:80/dining/sales').then((res) => {
+        this.$http.get('http://localhost:8003/CanteenPC/salesAnalysis').then((res) => {
           this.list = res.data
           this.char.setOption({
             series: [
@@ -100,21 +109,21 @@
                 type: 'line',
                 stack: '总量',
                 areaStyle: {},
-                data: this.list.a
+                data: this.list.takeOut
               },
               {
                 name: '堂食',
                 type: 'line',
                 stack: '总量',
                 areaStyle: {},
-                data: this.list.b
+                data: this.list.canteen
               },
               {
                 name: '总销量',
                 type: 'line',
                 stack: '总量',
                 areaStyle: {},
-                data: this.list.c
+                data: this.list.sum
               }
             ]
           })

@@ -72,13 +72,6 @@ func HangUpOrder(c *gin.Context) {
 	dao.DB.Model(&model.Orders{}).Where("order_id = ?", orderId).Update("hang_up", newHangUp)
 }
 
-// HangUpFinish 完成挂起的订单
-func HangUpFinish(c *gin.Context) {
-	var orderId = c.PostForm("orderId")
-	var finish bool = true
-	dao.DB.Model(&model.Orders{}).Where("order_num = ?", orderId).Update("finish", finish)
-}
-
 // TakeOut 外卖订单界面
 func TakeOut(c *gin.Context) {
 	var foodType string = "外卖"
@@ -91,7 +84,7 @@ func TakeOut(c *gin.Context) {
 
 // FinishTakeOut 外卖完成订单
 func FinishTakeOut(c *gin.Context) {
-	var orderId = c.PostForm("orderId")
+	orderId, _ := c.Params.Get("orderId")
 	var finish bool = true
 	dao.DB.Model(&model.Orders{}).Where("order_id = ?", orderId).Update("finish", finish)
 }
@@ -205,7 +198,7 @@ func SalesAnalysis(c *gin.Context) {
 		println("------")
 
 		dao.DB.Model(&model.Orders{}).Where("type = ? AND order_time > ? AND order_time < ? ",
-			"食堂", behindTime, aheadTime).Count(&canteen[i])
+			"堂食", behindTime, aheadTime).Count(&canteen[i])
 
 		dao.DB.Model(&model.Orders{}).Where("type = ? AND order_time > ? AND order_time < ? ",
 			"外卖", behindTime, aheadTime).Count(&takeOut[i])
@@ -215,6 +208,10 @@ func SalesAnalysis(c *gin.Context) {
 
 		aheadTime = behindTime // 前一天的结束
 	}
+
+	fmt.Println(sum)
+	fmt.Println(canteen)
+	fmt.Println(takeOut)
 
 	c.JSON(http.StatusOK, gin.H{
 		"canteen": canteen,

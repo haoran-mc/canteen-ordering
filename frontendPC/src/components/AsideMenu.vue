@@ -3,10 +3,22 @@
     <!-- 侧边栏菜单区域 -->
     <el-menu background-color="#333744" text-color="#fff" unique-opened router :default-active="activePath">
       <!-- 订单处理 -->
-      <el-menu-item index="/CanteenPC/manageOrders" @click="saveNavState('/CanteenPC/manageOrders')">
-        <i class="el-icon-tickets"></i>
-        <span slot="title">订单处理</span>
-      </el-menu-item>
+      <el-submenu index="/CanteenPCmanageOrders">
+        <template slot="title">
+          <i class="el-icon-tickets"></i>
+          <span>订单处理</span>
+        </template>
+        <!-- 堂食 -->
+        <el-menu-item index="/CanteenPC/manageOrders" @click="saveNavState('/CanteenPC/manageOrders')">
+          <i class="el-icon-tableware"></i>
+          <span slot="title">订单处理</span>
+        </el-menu-item>
+        <!-- 外卖 -->
+        <el-menu-item index="/CanteenPC/takeOut" @click="saveNavState('/CanteenPC/takeOut')">
+          <i class="el-icon-s-home"></i>
+          <span slot="title">外卖处理</span>
+        </el-menu-item>
+      </el-submenu>
 
       <!-- 挂起订单
       <el-menu-item index="/CanteenPC/hangUp" @click="saveNavState('/CanteenPC/hangUp'), drawerVisible=false">
@@ -16,12 +28,6 @@
         </span>
       </el-menu-item>
       -->
-
-      <!-- 外卖界面 -->
-      <el-menu-item index="/CanteenPC/takeOut" @click="saveNavState('/CanteenPC/takeOut')">
-        <i class="el-icon-tableware"></i>
-        <span slot="title">外卖处理</span>
-      </el-menu-item>
 
       <!-- 菜系管理 -->
       <el-menu-item index="/CanteenPC/editFood" @click="saveNavState('/CanteenPC/editFood')">
@@ -48,8 +54,16 @@
           <span>数据统计</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="/CanteenPC/salesAnalysis" @click="saveNavState('/CanteenPC/salesAnalysis')">销量分析</el-menu-item>
-          <el-menu-item index="/CanteenPC/foodAnalysis" @click="saveNavState('/CanteenPC/foodAnalysis')">菜品分析</el-menu-item>
+          <!-- 销量分析 -->
+          <el-menu-item index="/CanteenPC/salesAnalysis" @click="saveNavState('/CanteenPC/salesAnalysis')">
+            <i class="el-icon-data-line"></i>
+            <span>销量分析</span>
+          </el-menu-item>
+          <!-- 菜品分析 -->
+          <el-menu-item index="/CanteenPC/foodAnalysis" @click="saveNavState('/CanteenPC/foodAnalysis')">
+            <i class="el-icon-data-analysis"></i>
+            <span>菜品分析</span>
+          </el-menu-item>
         </el-menu-item-group>
       </el-submenu>
     </el-menu>

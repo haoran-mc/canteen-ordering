@@ -2,14 +2,14 @@
   <el-card>
     <el-table :data="tableData" style="width: 100%">
       <!-- 日期 -->
-      <el-table-column label="日期">
+      <el-table-column label="日期" align="center">
         <template slot-scope="scope">
           <span >{{ scope.row.time }}</span>
         </template>
       </el-table-column>
 
       <!-- 订单号 -->
-      <el-table-column label="订单号">
+      <el-table-column label="订单号" align="center">
         <template slot-scope="scope">
           <div slot="reference" class="name-wrapper">
             <span size="medium">{{ scope.row.orderId }}</span>
@@ -18,7 +18,7 @@
       </el-table-column>
 
       <!-- 菜品 -->
-      <el-table-column label="菜系">
+      <el-table-column label="菜系" align="center">
         <template slot-scope="scope">
           <div slot="reference" class="name-wrapper">
             <span size="medium">{{ scope.row.foodName1 }}</span>
@@ -29,17 +29,15 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="备注" width="180">
+      <el-table-column label="备注" width="180" align="center">
         <template slot-scope="scope">
-          <el-popover trigger="hover" placement="top">
-            <div slot="reference" class="name-wrapper">
-              <span size="medium">{{ scope.row.remark}}</span>
-            </div>
-          </el-popover>
+          <div slot="reference" class="name-wrapper">
+            <span size="medium">{{ scope.row.remark}}</span>
+          </div>
         </template>
       </el-table-column>
 
-      <el-table-column label="操作">
+      <el-table-column label="操作" align="center">
         <template slot-scope="scope">
           <el-button size="mini" type="primary" @click="finishTakeOut(scope.$index, scope.row)">完成</el-button>
         </template>
@@ -63,17 +61,14 @@
         this.$http.get("takeOut").then(res => { this.tableData = res.data })
       },
       finishTakeOut (index, row) {
-        const data = new FormData()
-        const a = row.orderNum
-        data.append('orderId', a)
-
-        this.$http.post('/dining/outFoodOp', data).then(() => { this.getOutFood() })
-
-        this.$notify({
-          title: '完成订单',
-          type: 'success',
-          duration: 1500,
-          position: 'bottom-right'
+        this.$http.put(`finishTakeOut/${row.orderId}`).then(() => {
+          this.getTakeOut()
+          this.$notify({
+            title: '完成订单',
+            type: 'success',
+            duration: 1500,
+            position: 'bottom-right'
+          })
         })
       }
     }

@@ -1,15 +1,15 @@
 <template>
   <el-card>
     <el-table :data="tableData" style="width: 100%" max-height="600">
-      <el-table-column fixed prop="Time" label="日期" width="150"></el-table-column>
-      <el-table-column prop="FoodName" label="菜名" width="120"></el-table-column>
-      <el-table-column prop="Advise" label="建议" width="550"></el-table-column>
-      <el-table-column fixed="right" label="操作" width="120">
+      <el-table-column fixed prop="Time" label="日期" width="150" align="center"></el-table-column>
+      <el-table-column prop="FoodName" label="菜名" width="120" align="center"></el-table-column>
+      <el-table-column prop="Advise" label="建议" width="550" align="center"></el-table-column>
+      <el-table-column fixed="right" label="操作" width="120" align="center">
         <template slot-scope="scope">
           <el-button @click.native.prevent="deleteRow(scope.$index, tableData)"
             @click="deleteOpinion(scope.row)"
             type="text"
-            size="small">删除</el-button>
+            size="medium">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
