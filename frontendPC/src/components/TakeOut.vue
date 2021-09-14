@@ -1,39 +1,31 @@
 <template>
   <el-card>
     <el-table :data="tableData" style="width: 100%">
-      <el-table-column label="日期" width="280">
+      <!-- 日期 -->
+      <el-table-column label="日期">
         <template slot-scope="scope">
           <span >{{ scope.row.time }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="订单号" width="250">
+      <!-- 订单号 -->
+      <el-table-column label="订单号">
         <template slot-scope="scope">
-          <el-popover trigger="hover" placement="top">
-            <div slot="reference" class="name-wrapper">
-              <span size="medium">{{ scope.row.orderNum }}</span>
-            </div>
-          </el-popover>
+          <div slot="reference" class="name-wrapper">
+            <span size="medium">{{ scope.row.orderId }}</span>
+          </div>
         </template>
       </el-table-column>
 
-      <el-table-column label="菜系" width="80">
+      <!-- 菜品 -->
+      <el-table-column label="菜系">
         <template slot-scope="scope">
-          <el-popover trigger="hover" placement="top">
-            <div slot="reference" class="name-wrapper">
-              <span size="medium">{{ scope.row.foodName }}</span>
-            </div>
-          </el-popover>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="foodName1" width="180">
-        <template slot-scope="scope">
-          <el-popover trigger="hover" placement="top">
-            <div slot="reference" class="name-wrapper">
-              <span size="medium">{{ scope.row.foodName1 }}</span>
-            </div>
-          </el-popover>
+          <div slot="reference" class="name-wrapper">
+            <span size="medium">{{ scope.row.foodName1 }}</span>
+            <span slot="reference" v-if="scope.row.foodName2 !== 'undefined'">
+              &nbsp;&nbsp;{{scope.row.foodName2}}
+            </span>
+          </div>
         </template>
       </el-table-column>
 

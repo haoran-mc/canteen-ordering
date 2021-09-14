@@ -10,7 +10,6 @@ import FoodAnalysis from '../components/FoodAnalysis.vue'
 import EditFood from '../components/EditFood.vue'
 import OrdersRecord from '../components/OrdersRecord.vue'
 import Opinion from '../components/Opinion.vue'
-import HangUp from '../components/HangUp.vue'
 
 Vue.use(VueRouter)
 
@@ -29,8 +28,7 @@ const routes = [
       { path: '/CanteenPC/foodAnalysis', component: FoodAnalysis },
       { path: '/CanteenPC/editFood', component: EditFood },
       { path: '/CanteenPC/ordersRecord', component: OrdersRecord },
-      { path: '/CanteenPC/opinion', component: Opinion },
-      { path: '/CanteenPC/hangUp', component: HangUp }
+      { path: '/CanteenPC/opinion', component: Opinion }
     ]
   }
 ]

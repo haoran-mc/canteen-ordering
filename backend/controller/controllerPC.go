@@ -31,25 +31,29 @@ func PCLogin(c *gin.Context) {
 // ManageOrders 食堂订单界面
 func ManageOrders(c *gin.Context) {
 	var foodType string = "堂食"
-	var hangUp bool = false
 	var finish bool = false
 	dao.DB.AutoMigrate(model.Orders{})
 	var orderList []model.Orders
-	dao.DB.Where("type = ? AND finish = ? AND hang_up = ?", foodType, finish, hangUp).Find(&orderList)
+	dao.DB.Where("type = ? AND finish = ?", foodType, finish).Find(&orderList)
+	fmt.Println(orderList)
 	c.JSON(http.StatusOK, orderList)
 }
 
 // FinishOrder 食堂完成订单
 func FinishOrder(c *gin.Context) {
-	var orderId = c.PostForm("orderId")
+	orderId, ok := c.Params.Get("orderId")
+	if !ok {
+		c.JSON(http.StatusOK, gin.H{"error": "无效的orderId"})
+		return
+	}
 	var Finish bool = true
 	dao.DB.Model(&model.Orders{}).Where("order_id = ?", orderId).Update("finish", Finish)
 }
 
 // HangUp 挂起页面
 func HangUp(c *gin.Context) {
-	var hangUp bool = true
-	var finish bool = false
+	var hangUp int = 1
+	var finish int = 0
 	var orders []model.Orders
 	dao.DB.Where("hang_up = ? AND finish = ?", hangUp, finish).Find(&orders)
 	c.JSON(200, orders)
@@ -57,9 +61,15 @@ func HangUp(c *gin.Context) {
 
 // HangUpOrder 食堂挂起订单
 func HangUpOrder(c *gin.Context) {
-	var orderId = c.PostForm("orderId")
-	var hangUp bool = true
-	dao.DB.Model(&model.Orders{}).Where("order_id = ?", orderId).Update("hang_up", hangUp)
+	orderId, _ := c.Params.Get("orderId")
+	hangUp, _ := c.Params.Get("state")
+	var newHangUp bool
+	if hangUp == "true" {
+		newHangUp = false
+	} else {
+		newHangUp = true
+	}
+	dao.DB.Model(&model.Orders{}).Where("order_id = ?", orderId).Update("hang_up", newHangUp)
 }
 
 // HangUpFinish 完成挂起的订单

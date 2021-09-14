@@ -3,39 +3,40 @@
     <!-- 侧边栏菜单区域 -->
     <el-menu background-color="#333744" text-color="#fff" unique-opened router :default-active="activePath">
       <!-- 订单处理 -->
-      <el-menu-item index="/CanteenPC/manageOrders" @click="saveNavState('/manageOrders')">
+      <el-menu-item index="/CanteenPC/manageOrders" @click="saveNavState('/CanteenPC/manageOrders')">
         <i class="el-icon-tickets"></i>
         <span slot="title">订单处理</span>
       </el-menu-item>
 
-      <!-- 挂起订单 -->
-      <el-menu-item index="/CanteenPC/hangUp" @click="saveNavState('/hangUp'), drawerVisible=true">
+      <!-- 挂起订单
+      <el-menu-item index="/CanteenPC/hangUp" @click="saveNavState('/CanteenPC/hangUp'), drawerVisible=false">
         <i class="el-icon-refresh-left"></i>
         <span slot="title" >
           <span type="primary">挂起订单</span>
         </span>
       </el-menu-item>
+      -->
 
       <!-- 外卖界面 -->
-      <el-menu-item index="/CanteenPC/takeOut" @click="saveNavState('/takeOut')">
+      <el-menu-item index="/CanteenPC/takeOut" @click="saveNavState('/CanteenPC/takeOut')">
         <i class="el-icon-tableware"></i>
         <span slot="title">外卖处理</span>
       </el-menu-item>
 
       <!-- 菜系管理 -->
-      <el-menu-item index="/CanteenPC/editFood" @click="saveNavState('/editFood')">
+      <el-menu-item index="/CanteenPC/editFood" @click="saveNavState('/CanteenPC/editFood')">
         <i class="el-icon-dish-1"></i>
         <span slot="title">菜系管理</span>
       </el-menu-item>
 
       <!-- 订单记录 -->
-      <el-menu-item index="/CanteenPC/ordersRecord" @click="saveNavState('/ordersRecord')">
+      <el-menu-item index="/CanteenPC/ordersRecord" @click="saveNavState('/CanteenPC/ordersRecord')">
         <i class="el-icon-receiving"></i>
         <span slot="title">订单记录</span>
       </el-menu-item>
 
       <!-- 意见处理 -->
-      <el-menu-item index="/CanteenPC/opinion" @click="saveNavState('/opinion')">
+      <el-menu-item index="/CanteenPC/opinion" @click="saveNavState('/CanteenPC/opinion')">
         <i class="el-icon-edit"></i>
         <span slot="title">意见处理</span>
       </el-menu-item>
@@ -47,8 +48,8 @@
           <span>数据统计</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="/CanteenPC/salesAnalysis" @click="saveNavState('/salesAnalysis')">销量分析</el-menu-item>
-          <el-menu-item index="/CanteenPC/foodAnalysis" @click="saveNavState('/foodAnalysis')">菜品分析</el-menu-item>
+          <el-menu-item index="/CanteenPC/salesAnalysis" @click="saveNavState('/CanteenPC/salesAnalysis')">销量分析</el-menu-item>
+          <el-menu-item index="/CanteenPC/foodAnalysis" @click="saveNavState('/CanteenPC/foodAnalysis')">菜品分析</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
     </el-menu>
@@ -57,39 +58,25 @@
     <el-drawer :open="getHangUpOrders" :visible.sync="drawerVisible" size="50%" direction="rtl">
       <el-table :data="hangUpOrders" style="width: 100%">
         <!-- 日期 -->
-        <el-table-column label="日期" width="180">
+        <el-table-column label="日期">
           <template slot-scope="scope">
             <span>{{scope.row.time}}</span>
           </template>
         </el-table-column>
         <!-- 订单号 -->
-        <el-table-column label="订单号" width="150">
+        <el-table-column label="订单号">
           <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top">
-              <div slot="reference" class="name-wrapper">
-                <span size="medium">{{scope.row.orderNum}}</span>
-              </div>
-            </el-popover>
+            <div slot="reference" class="name-wrapper">
+              <span size="medium">{{scope.row.orderId}}</span>
+            </div>
           </template>
         </el-table-column>
         <!-- 菜系 -->
-        <el-table-column label="菜系" width="80">
+        <el-table-column label="菜系">
           <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top">
-              <div slot="reference" class="name-wrapper">
-                <span size="medium">{{scope.row.foodName}}</span>
-              </div>
-            </el-popover>
-          </template>
-        </el-table-column>
-        <!-- "" -->
-        <el-table-column label="foodName1" width="130">
-          <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top">
-              <div slot="reference" class="name-wrapper">
-                <span size="medium">{{scope.row.foodName1}}</span>
-              </div>
-            </el-popover>
+            <div slot="reference" class="name-wrapper">
+              <span size="medium">{{scope.row.foodName1}}</span>
+            </div>
           </template>
         </el-table-column>
         <!-- 类型 -->
@@ -124,6 +111,7 @@
     created () {
       // 从缓存中获取已保存的链接地址
       this.activePath = window.sessionStorage.getItem('activePath')
+      this.getHangUpOrders()
     },
     methods: {
       // 保存链接的激活状态
