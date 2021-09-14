@@ -11,11 +11,11 @@
         <!-- 堂食 -->
         <el-menu-item index="/CanteenPC/manageOrders" @click="saveNavState('/CanteenPC/manageOrders')">
           <i class="el-icon-tableware"></i>
-          <span slot="title">订单处理</span>
+          <span slot="title">堂食处理</span>
         </el-menu-item>
         <!-- 外卖 -->
         <el-menu-item index="/CanteenPC/takeOut" @click="saveNavState('/CanteenPC/takeOut')">
-          <i class="el-icon-s-home"></i>
+          <i class="el-icon-shopping-cart-2"></i>
           <span slot="title">外卖处理</span>
         </el-menu-item>
       </el-submenu>

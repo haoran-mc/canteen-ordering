@@ -1,5 +1,7 @@
 <template>
-  <div id="main" style="width: 70%; height:80%; margin-left: 15%; margin-top: 5%;"></div>
+  <el-card>
+    <div id="main"></div>
+  </el-card>
 </template>
 
 <script>
@@ -35,10 +37,10 @@
             text: '销量折线图',
             // 主标题内容样式
             textStyle: {
-              color: '#3398DB'
+              color: '#333744'
             },
-            // 标题位置,图形是放在一个dom中,因此用padding属性来定位
-            padding: [0, 0, 100, 100]
+            // 标题位置，图形是放在一个dom中，因此用padding属性来定位
+            padding: [10, 0, 0, 100]
           },
           tooltip: {
             trigger: 'axis',
@@ -75,7 +77,6 @@
               type: 'value'
             }
           ],
-          order: [],
           series: [
             {
               name: '外卖',
@@ -134,4 +135,10 @@
 </script>
 
 <style scoped>
+  #main {
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
 </style>

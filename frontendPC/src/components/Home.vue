@@ -3,7 +3,7 @@
     <!-- 头部区域 -->
     <el-header>
       <div class="header-title">
-        <el-avatar :src="require('../assets/LoginLogo.png')"></el-avatar>
+        <el-avatar :src="require('../assets/logo.png')"></el-avatar>
         <span style="margin-left: 15px;">食堂点餐</span>
       </div>
       <el-button type="info" @click="logout">退出</el-button>
@@ -40,7 +40,7 @@
       // 退出登录
       logout () {
         window.sessionStorage.clear()
-        this.$router.push('/login')
+        this.$router.push('/CanteenPC/login')
       }
     }
   }

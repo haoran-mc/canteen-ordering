@@ -1,6 +1,34 @@
 <template>
   <el-card>
     <el-table :data="tableData" style="width: 100%">
+      <!-- 展开列 -->
+      <el-table-column type="expand">
+        <template slot-scope="scope">
+          <!-- 折叠面板 -->
+          <el-collapse accordion style="display: flex; flex-direction: column; align-items: center;">
+            <!-- 地址 -->
+            <el-collapse-item name="1" style="width: 90%">
+              <template slot="title">
+                <i class="el-icon-s-home"></i>
+                <span style="margin-left: 10px;">地址</span>
+              </template>
+              <div>{{scope.row.address}}</div>
+            </el-collapse-item>
+            <!-- 联系方式 -->
+            <el-collapse-item name="2" style="width: 90%">
+              <template slot="title">
+                <i class="el-icon-phone"></i>
+                <span style="margin-left: 10px;">联系方式</span>
+              </template>
+              <div>{{scope.row.phone}}</div>
+            </el-collapse-item>
+          </el-collapse>
+        </template>
+      </el-table-column>
+
+      <!-- 索引列 -->
+      <el-table-column type="index"></el-table-column>
+
       <!-- 日期 -->
       <el-table-column label="日期" align="center">
         <template slot-scope="scope">
@@ -29,6 +57,7 @@
         </template>
       </el-table-column>
 
+      <!-- 备注 -->
       <el-table-column label="备注" width="180" align="center">
         <template slot-scope="scope">
           <div slot="reference" class="name-wrapper">
@@ -37,9 +66,10 @@
         </template>
       </el-table-column>
 
+      <!-- 操作 -->
       <el-table-column label="操作" align="center">
         <template slot-scope="scope">
-          <el-button size="mini" type="primary" @click="finishTakeOut(scope.$index, scope.row)">完成</el-button>
+          <el-button size="medium" type="primary" @click="finishTakeOut(scope.$index, scope.row)">完成</el-button>
         </template>
       </el-table-column>
     </el-table>

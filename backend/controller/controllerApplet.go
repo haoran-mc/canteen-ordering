@@ -132,9 +132,12 @@ func ReceiptMyOrder(c *gin.Context) {
 	userId := c.PostForm("userId")
 	getId := c.PostForm("getId")
 	var order []model.Orders
+	var finish bool = true
 
 	dao.DB.Model(&model.Orders{}).Where("user_id = ? AND get_id = ?", userId, getId).
 		Update("user_cf", "已完成")
+	dao.DB.Model(&model.Orders{}).Where("user_id = ? AND get_id = ?", userId, getId).
+		Update("finish", finish)
 	c.JSON(http.StatusOK, order)
 	jsons, errs := json.Marshal(order)
 	if errs != nil {

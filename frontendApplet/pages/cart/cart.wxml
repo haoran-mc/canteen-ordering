@@ -17,7 +17,6 @@
         class="step"
         data-index="{{index}}"
         value="{{item.number}}"
-        bind:change="onChange"
         bind:plus="plus"
         bind:minus="minus"/>
     </view>

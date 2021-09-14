@@ -16,7 +16,7 @@ func SetupRouter() *gin.Engine {
 
 	v1 := r.Group("CanteenPC")
 	{
-		v1.POST("/login", controller.PCLogin)                    // TODO 登录页面
+		v1.POST("/login/:username/:password", controller.PCLogin)                    // TODO 登录页面
 		v1.GET("/manageOrders", controller.ManageOrders)         // 订单管理
 		v1.PUT("/finishOrder/:orderId", controller.FinishOrder)  // 完成订单
 

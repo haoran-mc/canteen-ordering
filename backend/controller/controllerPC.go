@@ -13,18 +13,23 @@ import (
 
 // PCLogin 管理员登录
 func PCLogin(c *gin.Context) {
-	name := c.PostForm("name")
-	password := c.PostForm("password")
-	err := dao.DB.Where("name = ? AND password = ?", name, password).
+	dao.DB.AutoMigrate(model.Admin{})
+	username, _ := c.Params.Get("username")
+	password, _ := c.Params.Get("password")
+
+	fmt.Println(username)
+	fmt.Println(password)
+
+	err := dao.DB.Where("name = ? AND password = ?", username, password).
 		Find(&model.Admin{}).Error
 	if err != nil {
 		c.JSON(400, gin.H{"error": err.Error()})
 	} else {
 		c.JSON(http.StatusOK, gin.H{
-			"name":     name,
+			"username": username,
 			"password": password,
 		})
-		c.Redirect(http.StatusMovedPermanently, "CanteenPC")
+		c.Redirect(http.StatusMovedPermanently, "CanteenPC/home")
 	}
 }
 
@@ -189,13 +194,13 @@ func SalesAnalysis(c *gin.Context) {
 	 *           behindTime  aheadTime
 	 */
 
-	for i := 0; i < 7; i++ {
+	for i := 6; i >= 0; i-- {
 		currentTime = currentTime.Add(oneDay)                   // current
 		behindTime := currentTime.Format("2006/01/02 15:04:05") // current 所在的这一天的开始(format)
 
 		println(behindTime)
 		println(aheadTime)
-		println("------")
+		fmt.Printf("i = %d ------", i)
 
 		dao.DB.Model(&model.Orders{}).Where("type = ? AND order_time > ? AND order_time < ? ",
 			"堂食", behindTime, aheadTime).Count(&canteen[i])

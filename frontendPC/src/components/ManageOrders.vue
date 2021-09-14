@@ -1,13 +1,8 @@
-<!--
-     1. 一个下拉列 :: 如果是外卖，可以下拉看地址与电话
-     2. 操作中把编辑换成完成
-     3. 加一个挂起操作，这样就没有挂起界面了
-     4. 订单处理下面有两个界面 ？
--->
-
 <template>
   <el-card style="width: 100%;">
+    <!-- 堂食订单 -->
     <el-table :data="tableData" style="width: 100%">
+      <!-- 菜品图片 -->
       <el-table-column label="图片" align="center">
         <template slot-scope="scope">
           <el-image style="height: 80px; width: 80px; margin: 0;" :src="scope.row.url1"></el-image>
@@ -18,6 +13,7 @@
         </template>
       </el-table-column>
 
+      <!-- 菜名 -->
       <el-table-column label="菜名" align="center">
         <template slot-scope="scope">
           <div slot="reference">
@@ -29,6 +25,7 @@
         </template>
       </el-table-column>
 
+      <!-- 价格 -->
       <el-table-column label="价格" align="center">
         <template slot-scope="scope">
           <div slot="reference" >
@@ -37,6 +34,7 @@
         </template>
       </el-table-column>
 
+      <!-- 操作 -->
       <el-table-column label="操作" align="center">
         <template slot-scope="scope">
           <!-- 完成按钮 -->
@@ -78,7 +76,6 @@
       getFood () {
         this.$http.get("manageOrders").then(res => {
           this.tableData = res.data
-          console.log(res.data)
         })
       },
       // 完成订单
@@ -86,6 +83,7 @@
         console.log(row.orderId)
         this.$http.put(`/finishOrder/${row.orderId}`).then(() => {
           this.getFood()
+          this.$message.success("订单完成")
         })
       },
       hangUpOrder (index, row) {

@@ -2,7 +2,7 @@
   <el-container class="login_container">
     <!-- Logo区域 -->
     <el-card class="logo_card">
-      <img style="border-radius: 10px; margin: 0 auto 25px auto;" src="../assets/LoginLogo.png"/>
+      <img style="border-radius: 10px; margin: 0 auto 25px auto;" src="../assets/logo.png"/>
       <div class="logo_text">
         食堂线上点餐
       </div>
@@ -65,11 +65,11 @@
           if (!valid) {
             return this.$message.error('登录失败！')
           }
-          const { data: res } = await this.$http.post('login', this.loginForm)
-          if (res.meta.status !== 200) return this.$message.error('登录失败')
+          const { data: res } = await this.$http.post(`login/${this.loginForm.username}/${this.loginForm.password}`)
+          if (res.password !== this.loginForm.password) return this.$message.error('登录失败')
           this.$message.success('登录成功！')
-          window.sessionStorage.setItem('token', res.data.token)
-          this.$router.push('/')
+          this.$router.push('/CanteenPC/home')
+          /* window.sessionStorage.setItem('token', res.data.token) */
         })
       }
     }
@@ -80,7 +80,7 @@
   .login_container {
     width: 100%;
     height: 100%;
-    background-image: url("../assets/155807-1529481487f5ce.jpg");
+    background-image: url("../assets/bg.jpg");
     background-size: 100%;
     display: flex;
     align-items: center;

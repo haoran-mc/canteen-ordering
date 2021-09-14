@@ -24,7 +24,12 @@ import {
   Upload,
   Notification,
   Dialog,
-  MessageBox
+  MessageBox,
+  Row,
+  Col,
+  Collapse,
+  CollapseItem,
+  Pagination
 } from 'element-ui'
 
 Vue.prototype.$message = Message
@@ -54,3 +59,8 @@ Vue.use(Popover)
 Vue.use(Tag)
 Vue.use(Upload)
 Vue.use(Dialog)
+Vue.use(Row)
+Vue.use(Col)
+Vue.use(Collapse)
+Vue.use(CollapseItem)
+Vue.use(Pagination)
