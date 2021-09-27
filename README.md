@@ -8,7 +8,7 @@
 
 ## Project preview
 
-[Demo video]()
+[Demo video](https://www.bilibili.com/video/BV1fQ4y1k7Mk?spm_id_from=333.999.0.0)
 
 ![Applet01](./resource/Applet01.png)
 

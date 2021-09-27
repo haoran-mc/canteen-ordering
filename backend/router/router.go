@@ -16,28 +16,28 @@ func SetupRouter() *gin.Engine {
 
 	v1 := r.Group("CanteenPC")
 	{
-		v1.POST("/login/:username/:password", controller.PCLogin)                    // TODO 登录页面
-		v1.GET("/manageOrders", controller.ManageOrders)         // 订单管理
-		v1.PUT("/finishOrder/:orderId", controller.FinishOrder)  // 完成订单
+		v1.POST("/login/:username/:password", controller.PCLogin)       // 登录页面
+		v1.GET("/manageOrders", controller.ManageOrders)                // 订单管理
+		v1.PUT("/finishOrder/:orderId", controller.FinishOrder)         // 完成订单
 
-		v1.GET("/hangUp", controller.HangUp)                     // 挂起页面
+		v1.GET("/hangUp", controller.HangUp)                            // 挂起页面
 		v1.PUT("/hangUpOrder/:orderId/:state", controller.HangUpOrder)  // 订单挂起
 
-		v1.GET("/takeOut", controller.TakeOut)                   // 外卖页面
-		v1.PUT("/finishTakeOut/:orderId", controller.FinishTakeOut)     // TODO 完成外卖
+		v1.GET("/takeOut", controller.TakeOut)                          // 外卖页面
+		v1.PUT("/finishTakeOut/:orderId", controller.FinishTakeOut)     // 完成外卖
 
-		v1.GET("/ordersRecord", controller.OrdersRecord)         // TODO 订单记录
+		v1.GET("/ordersRecord", controller.OrdersRecord)                // 订单记录
 
-		v1.GET("/manageFood", controller.ManageFood)             // 管理菜品页面
-		v1.POST("/addFood", controller.AddFood)                  // 添加菜品
-		v1.PUT("/editFood", controller.EditFood)                 // 编辑菜品
-		v1.DELETE("/deleteFood/:id", controller.DeleteFood)      // 删除菜品
+		v1.GET("/manageFood", controller.ManageFood)                    // 管理菜品页面
+		v1.POST("/addFood", controller.AddFood)                         // 添加菜品
+		v1.PUT("/editFood", controller.EditFood)                        // 编辑菜品
+		v1.DELETE("/deleteFood/:id", controller.DeleteFood)             // 删除菜品
 
-		v1.GET("/opinion", controller.Opinion)                   // TODO 意见页面
-		v1.POST("/deleteOpinion", controller.DeleteOpinion)      // TODO 删除意见
+		v1.GET("/opinion", controller.Opinion)                          // 意见页面
+		v1.POST("/deleteOpinion", controller.DeleteOpinion)             // 删除意见
 
-		v1.GET("/salesAnalysis", controller.SalesAnalysis)       // TODO 销量分析
-		v1.GET("/foodAnalysis", controller.FoodAnalysis)         // TODO 菜品分析
+		v1.GET("/salesAnalysis", controller.SalesAnalysis)              // 销量分析
+		v1.GET("/foodAnalysis", controller.FoodAnalysis)                // 菜品分析
 	}
 
 	v2 := r.Group("CanteenApplet")

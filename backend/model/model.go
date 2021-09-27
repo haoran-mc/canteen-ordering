@@ -24,7 +24,7 @@ type Orders struct {
 	OrderTime string `form:"time" json:"time"`
 	Address   string `form:"address" json:"address"`
 	Phone     string `form:"phone" json:"phone"`
-	Price     int    ` gorm:"not null" form:"allPrice" json:"allPrice" binding:"required"`
+	Price     int    `gorm:"not null" form:"allPrice" json:"allPrice" binding:"required"`
 	Type      string `form:"type" json:"type" binding:"required"`
 	FoodName1 string `form:"foodName1" json:"foodName1" binding:"required"`
 	FoodName2 string `form:"foodName2" json:"foodName2" `
