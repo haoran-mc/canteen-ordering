@@ -103,6 +103,16 @@ func OrdersRecord(c *gin.Context) {
 	c.JSON(http.StatusOK, orders)
 }
 
+// OrdersRecordSearch 搜索订单
+func OrdersRecordSearch(c *gin.Context) {
+	dao.DB.AutoMigrate(model.Orders{})
+	var orders []model.Orders
+	searchFoodName, _ := c.Params.Get("query")
+	searchFoodName = "%" + searchFoodName + "%"
+	dao.DB.Where("finish = ? AND food_name1 LIKE ?", true, searchFoodName).Find(&orders)
+	c.JSON(http.StatusOK, orders)
+}
+
 // ManageFood 食品管理
 func ManageFood(c *gin.Context) {
 	dao.DB.AutoMigrate(&model.Food{})

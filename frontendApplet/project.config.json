@@ -1,76 +1,79 @@
 {
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": false,
-		"es6": true,
-		"enhance": true,
-		"postcss": true,
-		"minified": true,
-		"newFeature": false,
-		"coverView": true,
-		"nodeModules": true,
-		"autoAudits": false,
-		"uglifyFileName": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": false,
-		"uploadWithSourceMap": true,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"preloadBackgroundData": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"compileHotReLoad": false,
-		"lazyloadPlaceholderEnable": false,
-		"useMultiFrameRuntime": true,
-		"useApiHook": true,
-		"useApiHostProcess": true,
-		"enableEngineNative": false,
-		"useIsolateContext": true,
-		"userConfirmedBundleSwitch": false,
-		"packNpmManually": false,
-		"packNpmRelationList": [],
-		"minifyWXSS": true,
-		"showES6CompileOption": false
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.13.2",
-	"appid": "wx8ff748b5366527b2",
-	"projectname": "frontendApplet",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"scripts": {},
-	"staticServerOptions": {
-		"baseURL": "",
-		"servePath": ""
-	},
-	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"list": []
-		},
-		"conversation": {
-			"list": []
-		},
-		"game": {
-			"list": []
-		},
-		"plugin": {
-			"list": []
-		},
-		"gamePlugin": {
-			"list": []
-		},
-		"miniprogram": {
-			"list": []
-		}
-	}
+    "description": "项目配置文件",
+    "packOptions": {
+        "ignore": []
+    },
+    "setting": {
+        "urlCheck": false,
+        "es6": true,
+        "enhance": true,
+        "postcss": true,
+        "preloadBackgroundData": false,
+        "minified": true,
+        "newFeature": false,
+        "coverView": true,
+        "nodeModules": true,
+        "autoAudits": false,
+        "showShadowRootInWxmlPanel": true,
+        "scopeDataCheck": false,
+        "uglifyFileName": false,
+        "checkInvalidKey": true,
+        "checkSiteMap": false,
+        "uploadWithSourceMap": true,
+        "compileHotReLoad": false,
+        "lazyloadPlaceholderEnable": false,
+        "useMultiFrameRuntime": true,
+        "useApiHook": true,
+        "useApiHostProcess": true,
+        "babelSetting": {
+            "ignore": [],
+            "disablePlugins": [],
+            "outputPath": ""
+        },
+        "useIsolateContext": false,
+        "userConfirmedBundleSwitch": false,
+        "packNpmManually": false,
+        "packNpmRelationList": [],
+        "minifyWXSS": true,
+        "disableUseStrict": false,
+        "minifyWXML": true,
+        "showES6CompileOption": false,
+        "useCompilerPlugins": false,
+        "ignoreUploadUnusedFiles": true
+    },
+    "compileType": "miniprogram",
+    "libVersion": "2.13.2",
+    "appid": "wx8ff748b5366527b2",
+    "projectname": "frontendApplet",
+    "debugOptions": {
+        "hidedInDevtools": []
+    },
+    "scripts": {},
+    "staticServerOptions": {
+        "baseURL": "",
+        "servePath": ""
+    },
+    "isGameTourist": false,
+    "simulatorType": "wechat",
+    "simulatorPluginLibVersion": {},
+    "condition": {
+        "search": {
+            "list": []
+        },
+        "conversation": {
+            "list": []
+        },
+        "game": {
+            "list": []
+        },
+        "plugin": {
+            "list": []
+        },
+        "gamePlugin": {
+            "list": []
+        },
+        "miniprogram": {
+            "list": []
+        }
+    }
 }

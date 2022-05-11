@@ -4,7 +4,7 @@
     <el-row :gutter="20" style="margin-bottom: 20px;">
       <el-col :span="8">
         <el-input placeholder="请输入内容" v-model="queryInfo.query" clearable @clear="getRecord">
-          <el-button slot="append" icon="el-icon-search" @click="getRecord"></el-button>
+          <el-button slot="append" icon="el-icon-search" @click="getRecordSearch"></el-button>
         </el-input>
       </el-col>
     </el-row>
@@ -63,7 +63,7 @@
       return {
         // 获取用户列表的参数对象
         queryInfo: {
-          query: '',
+          query: '手抓饼',
           // 当前的页码
           pagenum: 1,
           // 当前每页显示多少条数据
@@ -80,6 +80,13 @@
     methods: {
       getRecord () {
         this.$http.get("ordersRecord").then(res => {
+          this.tableData = res.data
+          this.total = res.data.length
+        })
+      },
+      getRecordSearch () {
+        console.log(this.queryInfo.query)
+        this.$http.get(`ordersRecordSearch/${this.queryInfo.query}`).then(res => {
           this.tableData = res.data
           this.total = res.data.length
         })
